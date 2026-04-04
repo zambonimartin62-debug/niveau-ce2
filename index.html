@@ -10,13 +10,12 @@
   --bg:#0d1117;--s1:#161b22;--s2:#21262d;--brd:#30363d;
   --pu:#7c3aed;--pu2:#a855f7;--ma:#0ea5e9;--ma2:#38bdf8;
   --fr:#ef4444;--fr2:#f87171;--en:#f59e0b;--en2:#fbbf24;
-  --cj:#10b981;--cj2:#34d399;
-  --ok:#22c55e;--er:#ef4444;--gold:#fbbf24;
-  --txt:#e6edf3;--mut:#7d8590;--r:16px;
-  --p:clamp(.75rem,3vw,1.3rem);--g:clamp(.55rem,2vw,1rem);
-  --fxl:clamp(1.5rem,5vw,2.4rem);--flg:clamp(1rem,3.2vw,1.35rem);
-  --fmd:clamp(.85rem,2.4vw,1rem);--fsm:clamp(.7rem,1.9vw,.85rem);
-  --fxs:clamp(.62rem,1.6vw,.75rem);
+  --cj:#10b981;--cj2:#34d399;--ok:#22c55e;--er:#ef4444;--gold:#fbbf24;
+  --txt:#e6edf3;--mut:#7d8590;--r:14px;
+  --p:clamp(.7rem,3vw,1.2rem);--g:clamp(.5rem,2vw,.9rem);
+  --fxl:clamp(1.4rem,5vw,2.2rem);--flg:clamp(.95rem,3vw,1.25rem);
+  --fmd:clamp(.82rem,2.3vw,.98rem);--fsm:clamp(.68rem,1.8vw,.82rem);
+  --fxs:clamp(.6rem,1.5vw,.72rem);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{font-size:16px}
@@ -25,183 +24,228 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sc{display:none;min-height:100vh;position:relative;z-index:1;flex-direction:column}
 .sc.on{display:flex}
 .wrap{width:100%;max-width:600px;margin:0 auto;padding:var(--p);display:flex;flex-direction:column;gap:var(--g);flex:1}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+@keyframes pf{0%{opacity:1;transform:translateY(0) rotate(0deg) scale(1)}100%{opacity:0;transform:translateY(-90px) rotate(360deg) scale(.4)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes comboIn{0%{transform:translate(-50%,-50%) scale(0) rotate(-10deg);opacity:0}60%{transform:translate(-50%,-50%) scale(1.15) rotate(2deg)}100%{transform:translate(-50%,-50%) scale(1) rotate(0deg);opacity:1}}
+@keyframes cardReveal{0%{transform:rotateY(90deg) scale(.8);opacity:0}100%{transform:rotateY(0deg) scale(1);opacity:1}}
+@keyframes slideUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 
 /* PIN */
 #s-pin{align-items:center;justify-content:center}
-.pin-box{display:flex;flex-direction:column;align-items:center;gap:1.1rem;width:100%;max-width:300px;margin:auto;padding:var(--p)}
+.pin-box{display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:300px;margin:auto;padding:var(--p)}
 .pin-logo{font-family:'Fredoka One',cursive;font-size:var(--fxl);background:linear-gradient(135deg,var(--pu2),var(--ma2),var(--en2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;line-height:1.15}
-.pin-logo span{display:block;font-size:var(--fsm);font-family:'Nunito',sans-serif;font-weight:700;-webkit-text-fill-color:var(--mut);color:var(--mut);margin-top:.2rem;letter-spacing:.08em;text-transform:uppercase}
-.pin-av{width:clamp(60px,15vw,84px);height:clamp(60px,15vw,84px);border-radius:50%;background:linear-gradient(135deg,var(--pu),var(--ma));display:flex;align-items:center;justify-content:center;font-size:clamp(1.7rem,6.5vw,2.5rem);border:4px solid var(--brd);animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
-@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
-@keyframes slideUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
-@keyframes pf{0%{opacity:1;transform:translateY(0) rotate(0deg) scale(1)}100%{opacity:0;transform:translateY(-90px) rotate(360deg) scale(.4)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes comboIn{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.2) rotate(3deg)}100%{transform:scale(1) rotate(0deg);opacity:1}}
+.pin-logo span{display:block;font-size:var(--fxs);font-family:'Nunito',sans-serif;font-weight:700;-webkit-text-fill-color:var(--mut);color:var(--mut);margin-top:.2rem;letter-spacing:.08em;text-transform:uppercase}
+.pin-av{width:clamp(60px,15vw,80px);height:clamp(60px,15vw,80px);border-radius:50%;background:linear-gradient(135deg,var(--pu),var(--ma));display:flex;align-items:center;justify-content:center;font-size:clamp(1.6rem,6vw,2.3rem);border:4px solid var(--brd);animation:float 3s ease-in-out infinite}
 .pin-name{font-family:'Fredoka One',cursive;font-size:var(--flg)}
 .pin-dots{display:flex;gap:.7rem}
 .pdot{width:clamp(13px,3.2vw,17px);height:clamp(13px,3.2vw,17px);border-radius:50%;border:2.5px solid var(--brd);background:transparent;transition:all .2s}
 .pdot.on{background:var(--pu2);border-color:var(--pu2);box-shadow:0 0 10px rgba(168,85,247,.5)}
 .pin-err{color:var(--er);font-size:var(--fsm);font-weight:700;min-height:1.2em;text-align:center}
-.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;width:100%}
-.nk{background:var(--s2);border:2px solid var(--brd);border-radius:12px;padding:clamp(.75rem,2.3vw,1rem);font-size:var(--flg);font-weight:800;font-family:inherit;color:var(--txt);cursor:pointer;transition:all .15s;touch-action:manipulation;display:flex;align-items:center;justify-content:center}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;width:100%}
+.nk{background:var(--s2);border:2px solid var(--brd);border-radius:12px;padding:clamp(.7rem,2.2vw,.95rem);font-size:var(--flg);font-weight:800;font-family:inherit;color:var(--txt);cursor:pointer;transition:all .15s;touch-action:manipulation;display:flex;align-items:center;justify-content:center}
 .nk:hover{background:var(--s1);border-color:var(--pu2);transform:scale(1.04)}
 .nk:active{transform:scale(.93)}.nk.del{color:var(--er)}.nk.empty{background:transparent;border-color:transparent;pointer-events:none}
 .pin-hint{font-size:var(--fxs);color:var(--mut);text-align:center}
 
 /* HOME */
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
 .pinfo{display:flex;align-items:center;gap:.6rem;min-width:0}
-.av{width:clamp(36px,8.5vw,48px);height:clamp(36px,8.5vw,48px);border-radius:50%;background:linear-gradient(135deg,var(--pu),var(--ma));display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;border:3px solid var(--brd);flex-shrink:0}
+.av{width:clamp(34px,8vw,46px);height:clamp(34px,8vw,46px);border-radius:50%;background:linear-gradient(135deg,var(--pu),var(--ma));display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;border:3px solid var(--brd);flex-shrink:0}
 .pname{font-weight:900;font-size:var(--fmd)}.plv{font-size:var(--fxs);color:var(--pu2);font-weight:700}
-.coins{display:flex;align-items:center;gap:.35rem;background:var(--s2);border:2px solid var(--brd);border-radius:20px;padding:.3rem .75rem;font-weight:800;font-size:var(--fmd);white-space:nowrap}
-.xpsec{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.8rem 1rem}
-.xphdr{display:flex;justify-content:space-between;font-size:var(--fxs);margin-bottom:.45rem;color:var(--mut);font-weight:700}
-.bwrap{background:var(--s1);border-radius:20px;height:clamp(6px,1.6vw,11px);overflow:hidden}
-.bfill{height:100%;border-radius:20px;transition:width .7s cubic-bezier(.4,0,.2,1)}
-.xpfill{background:linear-gradient(90deg,var(--pu),var(--pu2),var(--ma))}
-.diff-row{display:flex;align-items:center;gap:.6rem}
-.dbadge{display:inline-flex;align-items:center;gap:.4rem;border-radius:20px;padding:.3rem .75rem;font-size:var(--fsm);font-weight:800;border:2px solid}
-.dbadge.easy{border-color:var(--ok);color:var(--ok);background:rgba(34,197,94,.1)}
-.dbadge.medium{border-color:var(--en2);color:var(--en2);background:rgba(251,191,36,.1)}
-.dbadge.hard{border-color:var(--fr2);color:var(--fr2);background:rgba(248,113,113,.1)}
-.dbadge.expert{border-color:var(--pu2);color:var(--pu2);background:rgba(168,85,247,.1)}
-.streak{background:linear-gradient(135deg,#c2410c,#ea580c);border-radius:var(--r);padding:.65rem 1rem;display:flex;align-items:center;gap:.7rem}
-.scount{font-size:clamp(.95rem,3vw,1.3rem);font-weight:900;white-space:nowrap}
+.coins{display:flex;align-items:center;gap:.3rem;background:var(--s2);border:2px solid var(--brd);border-radius:20px;padding:.28rem .7rem;font-weight:800;font-size:var(--fmd);white-space:nowrap}
+
+/* XP bar with level counter */
+.xpsec{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.75rem 1rem}
+.xphdr{display:flex;justify-content:space-between;font-size:var(--fxs);margin-bottom:.4rem;color:var(--mut);font-weight:700}
+.bwrap{background:var(--s1);border-radius:20px;height:clamp(6px,1.6vw,11px);overflow:hidden;position:relative}
+.bfill{height:100%;border-radius:20px;transition:width .7s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--pu),var(--pu2),var(--ma));background-size:200% 100%;animation:shimmer 2s linear infinite}
+.level-display{display:flex;align-items:center;justify-content:space-between;margin-top:.4rem;font-size:var(--fxs);color:var(--mut);font-weight:700}
+.level-num{font-family:'Fredoka One',cursive;font-size:var(--fmd);color:var(--gold)}
+
+/* Pokemon preview strip */
+.poke-strip{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.65rem .9rem;display:flex;align-items:center;gap:.7rem}
+.poke-strip-ico{font-size:1.6rem;flex-shrink:0}
+.poke-strip-info{flex:1;min-width:0}
+.poke-strip-name{font-family:'Fredoka One',cursive;font-size:var(--fsm);color:var(--gold)}
+.poke-strip-hp{font-size:var(--fxs);color:var(--mut)}
+.poke-strip-next{font-size:var(--fxs);color:var(--pu2);font-weight:700;text-align:right;white-space:nowrap}
+
+.diff-badge{display:inline-flex;align-items:center;gap:.35rem;border-radius:20px;padding:.28rem .7rem;font-size:var(--fsm);font-weight:800;border:2px solid}
+.diff-badge.easy{border-color:var(--ok);color:var(--ok);background:rgba(34,197,94,.1)}
+.diff-badge.medium{border-color:var(--en2);color:var(--en2);background:rgba(251,191,36,.1)}
+.diff-badge.hard{border-color:var(--fr2);color:var(--fr2);background:rgba(248,113,113,.1)}
+.diff-badge.expert{border-color:var(--pu2);color:var(--pu2);background:rgba(168,85,247,.1)}
+.streak{background:linear-gradient(135deg,#c2410c,#ea580c);border-radius:var(--r);padding:.6rem .9rem;display:flex;align-items:center;gap:.7rem}
+.scount{font-size:clamp(.9rem,2.8vw,1.25rem);font-weight:900;white-space:nowrap}
 .stxt{font-size:var(--fxs);opacity:.9}
-.sec-title{font-family:'Fredoka One',cursive;font-size:var(--fsm);color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.sec-title{font-family:'Fredoka One',cursive;font-size:var(--fxs);color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
 
-/* COMBO display */
-.combo-bar{display:flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(245,158,11,.1));border:2px solid rgba(251,191,36,.3);border-radius:var(--r);padding:.5rem .9rem}
-.combo-ico{font-size:1.2rem}
-.combo-txt{font-weight:800;font-size:var(--fsm);color:var(--en2)}
-.combo-sub{font-size:var(--fxs);color:var(--mut)}
-
-/* SUBJECT GRID - now 3 cols including conjugation */
-.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--g)}
-@media(min-width:400px){.sgrid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:560px){.sgrid{grid-template-columns:repeat(6,1fr)}}
-.scard{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:clamp(.7rem,2.5vw,1.1rem);cursor:pointer;display:flex;flex-direction:column;gap:.4rem;position:relative;overflow:hidden;touch-action:manipulation;transition:transform .15s,border-color .15s,box-shadow .15s}
+/* SUBJECT GRID */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--g)}
+@media(min-width:480px){.sgrid{grid-template-columns:repeat(6,1fr)}}
+.scard{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:clamp(.65rem,2.5vw,1rem);cursor:pointer;display:flex;flex-direction:column;gap:.35rem;position:relative;overflow:hidden;touch-action:manipulation;transition:transform .15s,border-color .15s,box-shadow .15s}
 .scard:hover{transform:translateY(-3px)}.scard:active{transform:scale(.97)}
-.scard::before{content:'';position:absolute;top:-20px;right:-20px;width:56px;height:56px;border-radius:50%;opacity:.12}
-.scard.fr{border-color:rgba(239,68,68,.35)}.scard.fr:hover{border-color:var(--fr2);box-shadow:0 6px 20px rgba(239,68,68,.2)}.scard.fr::before{background:var(--fr)}
-.scard.ma{border-color:rgba(14,165,233,.35)}.scard.ma:hover{border-color:var(--ma2);box-shadow:0 6px 20px rgba(14,165,233,.2)}.scard.ma::before{background:var(--ma)}
-.scard.en{border-color:rgba(245,158,11,.35)}.scard.en:hover{border-color:var(--en2);box-shadow:0 6px 20px rgba(245,158,11,.2)}.scard.en::before{background:var(--en)}
-.scard.cj{border-color:rgba(16,185,129,.35)}.scard.cj:hover{border-color:var(--cj2);box-shadow:0 6px 20px rgba(16,185,129,.2)}.scard.cj::before{background:var(--cj)}
-.scard.rv{border-color:rgba(124,58,237,.35)}.scard.rv:hover{border-color:var(--pu2);box-shadow:0 6px 20px rgba(124,58,237,.2)}.scard.rv::before{background:var(--pu)}
-.scard.bo{border-color:rgba(251,191,36,.5);background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(245,158,11,.05))}.scard.bo:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(251,191,36,.3)}.scard.bo::before{background:var(--gold)}
-.sico{font-size:clamp(1.2rem,3.8vw,1.7rem)}.snm{font-family:'Fredoka One',cursive;font-size:var(--fxs)}
-.scard.fr .snm{color:var(--fr2)}.scard.ma .snm{color:var(--ma2)}.scard.en .snm{color:var(--en2)}.scard.cj .snm{color:var(--cj2)}.scard.rv .snm{color:var(--pu2)}.scard.bo .snm{color:var(--gold)}
+.scard::before{content:'';position:absolute;top:-18px;right:-18px;width:50px;height:50px;border-radius:50%;opacity:.12}
+.scard.fr{border-color:rgba(239,68,68,.35)}.scard.fr:hover{border-color:var(--fr2)}.scard.fr::before{background:var(--fr)}
+.scard.ma{border-color:rgba(14,165,233,.35)}.scard.ma:hover{border-color:var(--ma2)}.scard.ma::before{background:var(--ma)}
+.scard.en{border-color:rgba(245,158,11,.35)}.scard.en:hover{border-color:var(--en2)}.scard.en::before{background:var(--en)}
+.scard.cj{border-color:rgba(16,185,129,.35)}.scard.cj:hover{border-color:var(--cj2)}.scard.cj::before{background:var(--cj)}
+.scard.rv{border-color:rgba(124,58,237,.35)}.scard.rv:hover{border-color:var(--pu2)}.scard.rv::before{background:var(--pu)}
+.scard.bo{border-color:rgba(251,191,36,.45);background:linear-gradient(135deg,rgba(251,191,36,.06),rgba(245,158,11,.04))}.scard.bo:hover{border-color:var(--gold)}.scard.bo::before{background:var(--gold)}
+.scard.lc{border-color:rgba(16,185,129,.5);background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(52,211,153,.05))}.scard.lc:hover{border-color:var(--cj2)}.scard.lc::before{background:var(--cj)}
+.sico{font-size:clamp(1.2rem,3.5vw,1.6rem)}.snm{font-family:'Fredoka One',cursive;font-size:var(--fxs)}
+.scard.fr .snm{color:var(--fr2)}.scard.ma .snm{color:var(--ma2)}.scard.en .snm{color:var(--en2)}.scard.cj .snm{color:var(--cj2)}.scard.rv .snm{color:var(--pu2)}.scard.bo .snm{color:var(--gold)}.scard.lc .snm{color:var(--cj2)}
 .spb{background:var(--s1);border-radius:10px;height:4px;overflow:hidden}
 .spf{height:100%;border-radius:10px;transition:width .5s}
-.scard.fr .spf{background:var(--fr2)}.scard.ma .spf{background:var(--ma2)}.scard.en .spf{background:var(--en2)}.scard.cj .spf{background:var(--cj2)}.scard.rv .spf{background:var(--pu2)}.scard.bo .spf{background:var(--gold)}
+.scard.fr .spf{background:var(--fr2)}.scard.ma .spf{background:var(--ma2)}.scard.en .spf{background:var(--en2)}.scard.cj .spf{background:var(--cj2)}.scard.rv .spf{background:var(--pu2)}.scard.lc .spf{background:var(--cj2)}
 .slbl{font-size:var(--fxs);color:var(--mut);font-weight:700}
-.bdgwrap{display:flex;gap:.35rem;flex-wrap:wrap}
-.bdg{background:var(--s2);border:2px solid var(--brd);border-radius:20px;padding:.2rem .55rem;font-size:var(--fxs);font-weight:700}
+.bdgwrap{display:flex;gap:.3rem;flex-wrap:wrap}
+.bdg{background:var(--s2);border:2px solid var(--brd);border-radius:20px;padding:.18rem .5rem;font-size:var(--fxs);font-weight:700}
 .bdg.ok{border-color:var(--gold);color:var(--gold)}.bdg.no{opacity:.3}
-.mwrap{display:flex;flex-direction:column;gap:.5rem}
-.mit{background:var(--s2);border:2px solid var(--brd);border-radius:12px;padding:.65rem .9rem;display:flex;align-items:center;gap:.65rem}
-.mico{font-size:clamp(.95rem,2.6vw,1.2rem);flex-shrink:0}.mtx{flex:1;min-width:0}
+.mwrap{display:flex;flex-direction:column;gap:.45rem}
+.mit{background:var(--s2);border:2px solid var(--brd);border-radius:12px;padding:.6rem .85rem;display:flex;align-items:center;gap:.6rem}
+.mico{font-size:clamp(.9rem,2.4vw,1.1rem);flex-shrink:0}.mtx{flex:1;min-width:0}
 .mnm{font-weight:700;font-size:var(--fsm)}.mpr{font-size:var(--fxs);color:var(--mut)}
-.mbar{width:clamp(36px,6.5vw,50px);background:var(--s1);border-radius:5px;height:5px;overflow:hidden;flex-shrink:0}
+.mbar{width:clamp(34px,6vw,48px);background:var(--s1);border-radius:5px;height:5px;overflow:hidden;flex-shrink:0}
 .mbf{height:100%;border-radius:5px;background:var(--pu2);transition:width .4s}
-.par-btn{background:var(--s2);border:2px solid var(--brd);border-radius:20px;padding:.28rem .75rem;font-size:var(--fxs);font-weight:700;color:var(--mut);cursor:pointer;font-family:inherit;transition:all .2s}
+.par-btn{background:var(--s2);border:2px solid var(--brd);border-radius:20px;padding:.25rem .7rem;font-size:var(--fxs);font-weight:700;color:var(--mut);cursor:pointer;font-family:inherit;transition:all .2s}
 .par-btn:hover{border-color:var(--gold);color:var(--gold)}
 
 /* QUIZ */
-.qhdr{display:flex;align-items:center;gap:.7rem}
+.qhdr{display:flex;align-items:center;gap:.6rem}
 .qlbl{font-family:'Fredoka One',cursive;font-weight:400;font-size:var(--fmd)}
 .qct{margin-left:auto;font-size:var(--fxs);color:var(--mut);font-weight:700;white-space:nowrap}
 .trow{display:flex;align-items:center;justify-content:space-between;font-size:var(--fxs);color:var(--mut);font-weight:700}
-.tbdg{background:var(--s2);border:2px solid var(--brd);border-radius:8px;padding:.18rem .6rem;font-size:var(--fsm);transition:color .3s,border-color .3s}
+.tbdg{background:var(--s2);border:2px solid var(--brd);border-radius:8px;padding:.16rem .55rem;font-size:var(--fsm);transition:color .3s,border-color .3s}
 .tbdg.urg{color:var(--er);border-color:var(--er)}
-/* COMBO floating badge */
-.combo-float{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:linear-gradient(135deg,var(--gold),#f59e0b);border-radius:20px;padding:.6rem 1.4rem;font-family:'Fredoka One',cursive;font-size:var(--flg);color:#000;z-index:350;pointer-events:none;animation:comboIn .4s cubic-bezier(.34,1.56,.64,1) forwards}
-.qcard{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:clamp(.85rem,3.5vw,1.6rem);text-align:center;display:flex;flex-direction:column;gap:.45rem;position:relative}
-.qemj{font-size:clamp(1.7rem,6vw,2.6rem)}
-.dchip{display:inline-block;border-radius:20px;padding:.15rem .5rem;font-size:var(--fxs);font-weight:800;margin-bottom:.2rem}
+.combo-float{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:linear-gradient(135deg,var(--gold),#f59e0b);border-radius:20px;padding:.55rem 1.3rem;font-family:'Fredoka One',cursive;font-size:var(--flg);color:#000;z-index:350;pointer-events:none}
+.combo-float.show{animation:comboIn .4s cubic-bezier(.34,1.56,.64,1) forwards}
+.qcard{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:clamp(.8rem,3.5vw,1.5rem);text-align:center;display:flex;flex-direction:column;gap:.4rem;position:relative}
+.qemj{font-size:clamp(1.6rem,5.5vw,2.4rem)}
+.dchip{display:inline-block;border-radius:20px;padding:.13rem .45rem;font-size:var(--fxs);font-weight:800;margin-bottom:.15rem}
 .dchip.easy{background:rgba(34,197,94,.15);color:var(--ok)}.dchip.medium{background:rgba(251,191,36,.15);color:var(--en2)}.dchip.hard{background:rgba(248,113,113,.15);color:var(--fr2)}.dchip.expert{background:rgba(168,85,247,.15);color:var(--pu2)}
-.qtx{font-family:'Fredoka One',cursive;font-size:clamp(.92rem,3vw,1.25rem);font-weight:400;line-height:1.4}
+.qtx{font-family:'Fredoka One',cursive;font-size:clamp(.88rem,2.8vw,1.2rem);font-weight:400;line-height:1.4}
 .qhi{font-size:var(--fxs);color:var(--mut)}
-.abtn-audio{position:absolute;top:.65rem;right:.65rem;background:rgba(251,191,36,.12);border:2px solid rgba(251,191,36,.35);border-radius:50%;width:clamp(30px,7.5vw,40px);height:clamp(30px,7.5vw,40px);font-size:clamp(.85rem,2.3vw,1.1rem);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;touch-action:manipulation}
+.abtn-audio{position:absolute;top:.6rem;right:.6rem;background:rgba(251,191,36,.12);border:2px solid rgba(251,191,36,.35);border-radius:50%;width:clamp(28px,7vw,38px);height:clamp(28px,7vw,38px);font-size:clamp(.8rem,2.1vw,1rem);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;touch-action:manipulation}
 .abtn-audio:hover{background:rgba(251,191,36,.25)}.abtn-audio.hide{display:none}
-.agrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.4rem,1.7vw,.8rem)}
-.ans{background:var(--s2);border:2.5px solid var(--brd);border-radius:12px;padding:clamp(.65rem,2.5vw,.95rem) .7rem;color:var(--txt);font-size:clamp(.8rem,2.3vw,.95rem);font-weight:700;font-family:inherit;cursor:pointer;transition:all .15s;text-align:center;line-height:1.3;touch-action:manipulation;min-height:clamp(48px,10.5vw,62px);display:flex;align-items:center;justify-content:center}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.38rem,1.6vw,.75rem)}
+.ans{background:var(--s2);border:2.5px solid var(--brd);border-radius:12px;padding:clamp(.6rem,2.3vw,.9rem) .65rem;color:var(--txt);font-size:clamp(.78rem,2.2vw,.92rem);font-weight:700;font-family:inherit;cursor:pointer;transition:all .15s;text-align:center;line-height:1.3;touch-action:manipulation;min-height:clamp(46px,10vw,60px);display:flex;align-items:center;justify-content:center}
 .ans:hover:not(:disabled){border-color:var(--pu2);transform:scale(1.02)}.ans:active:not(:disabled){transform:scale(.97)}
 .ans.ok{border-color:var(--ok);background:rgba(34,197,94,.12);color:var(--ok)}
 .ans.er{border-color:var(--er);background:rgba(239,68,68,.12);color:var(--er)}
 .ans:disabled{cursor:default}
 
-/* FEEDBACK - enriched */
-.fbov{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:200;padding:var(--p)}
-.fbpop{background:var(--s2);border:3px solid;border-radius:20px;padding:clamp(1rem,4.5vw,1.8rem);text-align:center;transform:scale(.6);opacity:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .2s;width:100%;max-width:360px}
+/* FEEDBACK */
+.fbov{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:200;padding:var(--p);overflow-y:auto}
+.fbpop{background:var(--s2);border:3px solid;border-radius:20px;padding:clamp(.9rem,4vw,1.6rem);text-align:center;transform:scale(.6);opacity:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .2s;width:100%;max-width:360px;margin:auto}
 .fbpop.on{transform:scale(1);opacity:1}.fbpop.ok{border-color:var(--ok)}.fbpop.er{border-color:var(--er)}
-.fbico{font-size:clamp(1.8rem,6.5vw,2.7rem)}.fbtit{font-family:'Fredoka One',cursive;font-size:var(--flg);margin:.4rem 0}
-.fbxp{font-size:var(--fxs);color:var(--mut);margin-bottom:.4rem}
-/* Explanation box - the KEY improvement */
-.fbexbox{background:var(--s1);border-radius:12px;padding:.7rem .9rem;text-align:left;margin-top:.3rem}
-.fbex-rule{font-size:var(--fsm);font-weight:800;color:var(--txt);margin-bottom:.3rem}
+.fbico{font-size:clamp(1.7rem,6vw,2.5rem)}.fbtit{font-family:'Fredoka One',cursive;font-size:var(--flg);margin:.35rem 0}
+.fbxp{font-size:var(--fxs);color:var(--mut);margin-bottom:.35rem}
+.fbexbox{background:var(--s1);border-radius:12px;padding:.65rem .85rem;text-align:left}
+.fbex-rule{font-size:var(--fsm);font-weight:800;color:var(--txt);margin-bottom:.25rem}
 .fbex-detail{font-size:var(--fxs);color:var(--mut);line-height:1.55}
-.fbex-example{font-size:var(--fxs);color:var(--en2);font-weight:700;margin-top:.3rem;font-style:italic}
-.fbdr{font-size:var(--fxs);margin-top:.35rem;font-weight:700}.fbdr.up{color:var(--en2)}.fbdr.down{color:var(--ma2)}
-.nxtbtn{background:linear-gradient(135deg,var(--pu),var(--pu2));border:none;border-radius:10px;padding:.6rem 1.4rem;color:#fff;font-size:var(--fmd);font-weight:800;font-family:inherit;cursor:pointer;margin-top:.85rem;transition:transform .15s;touch-action:manipulation}
+.fbex-example{font-size:var(--fxs);color:var(--en2);font-weight:700;margin-top:.25rem;font-style:italic}
+.nxtbtn{background:linear-gradient(135deg,var(--pu),var(--pu2));border:none;border-radius:10px;padding:.55rem 1.3rem;color:#fff;font-size:var(--fmd);font-weight:800;font-family:inherit;cursor:pointer;margin-top:.75rem;transition:transform .15s;touch-action:manipulation}
 .nxtbtn:hover{transform:translateY(-2px)}.nxtbtn:active{transform:scale(.96)}
 
 /* RESULTS */
 #s-res{align-items:center;justify-content:center}
-.rbox{width:100%;max-width:420px;padding:var(--p);display:flex;flex-direction:column;align-items:center;gap:clamp(.8rem,2.8vw,1.3rem);text-align:center}
-.rtr{font-size:clamp(3.2rem,12vw,5rem);animation:float 2s ease-in-out infinite}
+.rbox{width:100%;max-width:420px;padding:var(--p);display:flex;flex-direction:column;align-items:center;gap:clamp(.75rem,2.5vw,1.2rem);text-align:center}
+.rtr{font-size:clamp(3rem,11vw,4.5rem);animation:float 2s ease-in-out infinite}
 .rti{font-family:'Fredoka One',cursive;font-size:var(--flg)}
-.rsc{font-size:clamp(2rem,8.5vw,3.5rem);font-weight:900;background:linear-gradient(135deg,var(--gold),var(--en2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.rst{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;width:100%}
-.si{display:flex;flex-direction:column;align-items:center;gap:.22rem}
+.rsc{font-size:clamp(1.9rem,8vw,3.2rem);font-weight:900;background:linear-gradient(135deg,var(--gold),var(--en2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.rst{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.9rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.55rem;width:100%}
+.si{display:flex;flex-direction:column;align-items:center;gap:.2rem}
 .sv{font-family:'Fredoka One',cursive;font-size:var(--flg)}.sl{font-size:var(--fxs);color:var(--mut);font-weight:700}
-.nbbox{background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(245,158,11,.08));border:2px solid var(--gold);border-radius:var(--r);padding:.9rem 1.3rem;display:none;width:100%}
+.nbbox{background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(245,158,11,.08));border:2px solid var(--gold);border-radius:var(--r);padding:.85rem 1.2rem;display:none;width:100%}
 .nbbox.on{display:block}.nbsup{font-size:var(--fxs);color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.nbnm{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-top:.25rem}
-.dres{font-size:var(--fsm);font-weight:800;padding:.4rem .8rem;border-radius:12px}
+.nbnm{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-top:.2rem}
+.dres{font-size:var(--fsm);font-weight:800;padding:.38rem .75rem;border-radius:12px}
 .dres.up{background:rgba(251,191,36,.15);color:var(--en2);border:2px solid var(--en2)}
 .dres.down{background:rgba(14,165,233,.12);color:var(--ma2);border:2px solid var(--ma2)}
 .dres.same{background:rgba(34,197,94,.1);color:var(--ok);border:2px solid var(--ok)}
-.rbtns{display:flex;flex-direction:column;gap:.6rem;width:100%}
+.rbtns{display:flex;flex-direction:column;gap:.55rem;width:100%}
+
+/* POKEMON CARD */
+.poke-card{width:100%;max-width:280px;margin:0 auto;border-radius:16px;padding:1rem;display:flex;flex-direction:column;gap:.6rem;border:3px solid;position:relative;overflow:hidden;animation:cardReveal .5s ease forwards}
+.poke-card::before{content:'';position:absolute;inset:0;opacity:.06;background:repeating-linear-gradient(45deg,#fff 0px,#fff 1px,transparent 1px,transparent 8px)}
+.poke-hp-bar{height:8px;border-radius:10px;background:rgba(0,0,0,.3);overflow:hidden;margin-top:.2rem}
+.poke-hp-fill{height:100%;border-radius:10px;transition:width 1s ease}
+.poke-type-badge{display:inline-block;padding:.15rem .5rem;border-radius:10px;font-size:var(--fxs);font-weight:800;background:rgba(255,255,255,.2)}
+.poke-stats{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;font-size:var(--fxs)}
+.poke-stat{background:rgba(0,0,0,.25);border-radius:8px;padding:.25rem .4rem;font-weight:700}
+.poke-stat span{opacity:.7;margin-right:.2rem}
+
+/* POKEMON UNLOCK OVERLAY */
+.poke-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:600;display:none;align-items:center;justify-content:center;flex-direction:column;gap:.8rem;padding:var(--p);text-align:center}
+.poke-overlay.on{display:flex}
+.poke-unlock-title{font-family:'Fredoka One',cursive;font-size:var(--fxl);color:var(--gold);animation:slideUp .5s ease}
+.poke-unlock-sub{font-size:var(--fmd);color:var(--mut)}
+
+/* LESSON SCREEN */
+#s-lesson{background:var(--bg)}
+.lesson-hdr{display:flex;align-items:center;gap:.7rem;padding:var(--p);padding-bottom:.4rem;max-width:600px;margin:0 auto;width:100%}
+.lesson-title{font-family:'Fredoka One',cursive;font-size:var(--flg);color:var(--cj2)}
+.lesson-wrap{width:100%;max-width:600px;margin:0 auto;padding:var(--p);padding-top:.4rem;display:flex;flex-direction:column;gap:var(--g)}
+.lesson-section{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.9rem 1rem}
+.lesson-section-title{font-family:'Fredoka One',cursive;font-size:var(--fmd);color:var(--cj2);margin-bottom:.6rem}
+.lesson-card{cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.lesson-card:hover{border-color:var(--cj2);box-shadow:0 4px 16px rgba(16,185,129,.2)}
+.conj-table{width:100%;border-collapse:collapse;font-size:var(--fxs)}
+.conj-table th{background:rgba(16,185,129,.15);color:var(--cj2);padding:.3rem .5rem;font-weight:800;text-align:left;border-radius:6px}
+.conj-table td{padding:.3rem .5rem;border-bottom:1px solid var(--brd);font-weight:600}
+.conj-table td:first-child{color:var(--mut)}
+.conj-table td:last-child{color:var(--txt);font-weight:800}
+.conj-table tr:last-child td{border-bottom:none}
+.tense-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.7rem}
+.tense-tab{background:var(--s1);border:2px solid var(--brd);border-radius:20px;padding:.25rem .6rem;font-size:var(--fxs);font-weight:700;cursor:pointer;touch-action:manipulation;transition:all .2s;font-family:inherit;color:var(--mut)}
+.tense-tab.active{border-color:var(--cj2);color:var(--cj2);background:rgba(16,185,129,.1)}
+.lesson-rule-box{background:rgba(16,185,129,.08);border:2px solid rgba(16,185,129,.3);border-radius:12px;padding:.65rem .85rem;font-size:var(--fxs);line-height:1.55;color:var(--txt)}
+.lesson-ex{color:var(--en2);font-weight:700;font-style:italic;margin-top:.3rem;font-size:var(--fxs)}
+.start-practice-btn{background:linear-gradient(135deg,var(--cj),var(--cj2));border:none;border-radius:12px;padding:.75rem 1.5rem;color:#000;font-size:var(--fmd);font-weight:800;font-family:inherit;cursor:pointer;transition:transform .15s;touch-action:manipulation;display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%}
+.start-practice-btn:hover{transform:translateY(-2px)}.start-practice-btn:active{transform:scale(.97)}
 
 /* PARENT */
 #s-par{background:var(--bg)}
-.phdr{display:flex;align-items:center;gap:.8rem;padding:var(--p);padding-bottom:.4rem;max-width:600px;margin:0 auto;width:100%}
+.phdr{display:flex;align-items:center;gap:.7rem;padding:var(--p);padding-bottom:.4rem;max-width:600px;margin:0 auto;width:100%}
 .ptit{font-family:'Fredoka One',cursive;font-size:var(--flg)}
 .pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--g)}
 @media(min-width:440px){.pgrid{grid-template-columns:repeat(3,1fr)}}
-.pc{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.9rem 1rem;display:flex;flex-direction:column;gap:.25rem}
+.pc{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.85rem .95rem;display:flex;flex-direction:column;gap:.22rem}
 .pclb{font-size:var(--fxs);color:var(--mut);font-weight:700}.pcv{font-family:'Fredoka One',cursive;font-size:var(--flg)}.pcs{font-size:var(--fxs);color:var(--mut)}
-.rwrap{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.9rem 1rem}
-.rtit2{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-bottom:.7rem}
-.rrow{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
-.rlbl{font-size:var(--fxs);font-weight:700;min-width:75px}
-.rbar{flex:1;background:var(--s1);border-radius:10px;height:10px;overflow:hidden}
+.rwrap{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.85rem .95rem}
+.rtit2{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-bottom:.6rem}
+.rrow{display:flex;align-items:center;gap:.55rem;margin-bottom:.45rem}
+.rlbl{font-size:var(--fxs);font-weight:700;min-width:78px}
+.rbar{flex:1;background:var(--s1);border-radius:10px;height:9px;overflow:hidden}
 .rfill{height:100%;border-radius:10px;transition:width .6s}
-.hwrap{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.9rem 1rem}
-.htit{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-bottom:.6rem}
-.hit{display:flex;align-items:center;gap:.55rem;padding:.4rem 0;border-bottom:1px solid var(--brd);font-size:var(--fxs)}
-.hit:last-child{border-bottom:none}.hdt{color:var(--mut);min-width:78px;font-weight:600}
+.hwrap{background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.85rem .95rem}
+.htit{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-bottom:.55rem}
+.hit{display:flex;align-items:center;gap:.5rem;padding:.38rem 0;border-bottom:1px solid var(--brd);font-size:var(--fxs)}
+.hit:last-child{border-bottom:none}.hdt{color:var(--mut);min-width:76px;font-weight:600}
 .hsc{margin-left:auto;font-weight:900}.hsc.g{color:var(--ok)}.hsc.m{color:var(--en2)}.hsc.b{color:var(--er)}
-.twrap{background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(14,165,233,.06));border:2px solid var(--brd);border-radius:var(--r);padding:.9rem 1rem}
-.ttit{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-bottom:.5rem}
-.tip{font-size:var(--fxs);margin-bottom:.4rem;display:flex;gap:.45rem;line-height:1.45}
+.twrap{background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(14,165,233,.06));border:2px solid var(--brd);border-radius:var(--r);padding:.85rem .95rem}
+.ttit{font-family:'Fredoka One',cursive;font-size:var(--fmd);margin-bottom:.45rem}
+.tip{font-size:var(--fxs);margin-bottom:.38rem;display:flex;gap:.4rem;line-height:1.45}
+
 /* LEVEL UP */
-.luov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:none;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:.7rem;padding:var(--p)}
+.luov{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:500;display:none;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:.7rem;padding:var(--p)}
 .luov.on{display:flex}
-.luem{font-size:clamp(3rem,12vw,5rem);animation:float 1s ease-in-out infinite}
+.luem{font-size:clamp(2.8rem,11vw,4.5rem);animation:float 1s ease-in-out infinite}
 .luti{font-family:'Fredoka One',cursive;font-size:var(--fxl);color:var(--gold)}.lusu{font-size:var(--fmd);color:var(--mut)}
+
 /* BUTTONS */
-.btn{border:none;border-radius:12px;padding:clamp(.65rem,2.5vw,.92rem) clamp(.85rem,3vw,1.7rem);font-size:var(--fmd);font-weight:800;font-family:inherit;cursor:pointer;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:.45rem;touch-action:manipulation;width:100%}
+.btn{border:none;border-radius:12px;padding:clamp(.6rem,2.3vw,.88rem) clamp(.8rem,2.8vw,1.6rem);font-size:var(--fmd);font-weight:800;font-family:inherit;cursor:pointer;transition:transform .15s,box-shadow .15s;display:flex;align-items:center;justify-content:center;gap:.4rem;touch-action:manipulation;width:100%}
 .btn:active{transform:scale(.96)!important}
-.btn-pu{background:linear-gradient(135deg,var(--pu),var(--pu2));color:#fff;box-shadow:0 4px 18px rgba(124,58,237,.35)}
-.btn-pu:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(124,58,237,.5)}
+.btn-pu{background:linear-gradient(135deg,var(--pu),var(--pu2));color:#fff;box-shadow:0 4px 16px rgba(124,58,237,.35)}
+.btn-pu:hover{transform:translateY(-2px)}
 .btn-ma{background:linear-gradient(135deg,var(--ma),var(--ma2));color:#fff}.btn-ma:hover{transform:translateY(-2px)}
-.btn-sm{background:var(--s2);border:2px solid var(--brd);color:var(--txt);font-size:var(--fxs);padding:.4rem .8rem;border-radius:10px;width:auto}
+.btn-sm{background:var(--s2);border:2px solid var(--brd);color:var(--txt);font-size:var(--fxs);padding:.38rem .75rem;border-radius:10px;width:auto}
 .btn-sm:hover{border-color:var(--pu2)}
-.inp{background:var(--s1);border:2px solid var(--brd);border-radius:10px;padding:.55rem .8rem;color:var(--txt);font-size:var(--fmd);font-family:inherit;font-weight:700;outline:none;transition:border-color .2s;flex:1;min-width:140px}
+.inp{background:var(--s1);border:2px solid var(--brd);border-radius:10px;padding:.5rem .75rem;color:var(--txt);font-size:var(--fmd);font-family:inherit;font-weight:700;outline:none;transition:border-color .2s;flex:1;min-width:140px}
 .inp:focus{border-color:var(--pu2)}
 .pt{position:fixed;pointer-events:none;z-index:300;animation:pf 1.2s ease-out forwards}
 .sdot{position:fixed;bottom:10px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--ok);z-index:100;transition:background .4s}
@@ -239,33 +283,43 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="topbar">
       <div class="pinfo">
         <div class="av">🧑‍🚀</div>
-        <div><div class="pname">Baptiste</div><div class="plv" id="plv">📗 Niveau 1 – Apprenti</div></div>
+        <div><div class="pname">Baptiste</div><div class="plv" id="plv">📗 Niveau 1</div></div>
       </div>
       <div class="coins">🪙 <span id="cv">0</span></div>
     </div>
     <div class="xpsec">
-      <div class="xphdr"><span>Expérience</span><span id="xplbl">0 / 150 XP</span></div>
-      <div class="bwrap"><div class="bfill xpfill" id="xpbar" style="width:0%"></div></div>
-    </div>
-    <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">
-      <div class="dbadge easy" id="dbadge">🤖 Auto · 🌱 Facile</div>
-      <div class="combo-bar" id="combo-bar" style="display:none">
-        <div class="combo-ico">⚡</div>
-        <div><div class="combo-txt" id="combo-txt">Combo ×2</div><div class="combo-sub">XP doublés !</div></div>
+      <div class="xphdr"><span>Expérience</span><span id="xplbl">0 XP</span></div>
+      <div class="bwrap"><div class="bfill" id="xpbar" style="width:0%"></div></div>
+      <div class="level-display">
+        <span id="xp-to-next">XP vers niveau 2</span>
+        <span class="level-num" id="level-num">Niv. 1 / 100</span>
       </div>
+    </div>
+    <div class="poke-strip" id="poke-strip">
+      <div class="poke-strip-ico" id="ps-ico">🥚</div>
+      <div class="poke-strip-info">
+        <div class="poke-strip-name" id="ps-name">Œuf Mystère</div>
+        <div class="poke-strip-hp" id="ps-hp">PV : — · Type : —</div>
+      </div>
+      <div class="poke-strip-next" id="ps-next">→ Niveau 2</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+      <div class="diff-badge easy" id="dbadge">🤖 Auto · 🌱 Facile</div>
+      <div id="combo-home" style="display:none;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(245,158,11,.1));border:2px solid rgba(251,191,36,.3);border-radius:20px;padding:.25rem .65rem;font-size:var(--fxs);font-weight:800;color:var(--en2)">⚡ Combo ×<span id="combo-home-n">1</span></div>
     </div>
     <div class="streak">
       <div class="scount">🔥 <span id="sv">0</span></div>
       <div class="stxt" id="stxt">Continue, tu peux le faire !</div>
     </div>
-    <div class="sec-title">🎯 Choisir une matière</div>
+    <div class="sec-title">🎯 Choisir une activité</div>
     <div class="sgrid">
       <div class="scard fr" onclick="startSub('fr')"><div class="sico">📖</div><div class="snm">Français</div><div class="spb"><div class="spf" id="pg-fr" style="width:0%"></div></div><div class="slbl" id="lb-fr">0 ex.</div></div>
       <div class="scard ma" onclick="startSub('ma')"><div class="sico">🔢</div><div class="snm">Maths</div><div class="spb"><div class="spf" id="pg-ma" style="width:0%"></div></div><div class="slbl" id="lb-ma">0 ex.</div></div>
       <div class="scard en" onclick="startSub('en')"><div class="sico">🇬🇧</div><div class="snm">Anglais</div><div class="spb"><div class="spf" id="pg-en" style="width:0%"></div></div><div class="slbl" id="lb-en">0 ex.</div></div>
+      <div class="scard lc" onclick="showLesson()"><div class="sico">📗</div><div class="snm">Leçon Conj.</div><div class="spb"><div class="spf" id="pg-lc" style="width:0%"></div></div><div class="slbl" id="lb-lc">0 leçon</div></div>
       <div class="scard cj" onclick="startSub('cj')"><div class="sico">✍️</div><div class="snm">Conjugaison</div><div class="spb"><div class="spf" id="pg-cj" style="width:0%"></div></div><div class="slbl" id="lb-cj">0 ex.</div></div>
       <div class="scard rv" onclick="startSub('rv')"><div class="sico">🔄</div><div class="snm">Révisions</div><div class="spb"><div class="spf" style="width:50%"></div></div><div class="slbl">Mélange</div></div>
-      <div class="scard bo" onclick="startSub('bo')"><div class="sico">👹</div><div class="snm">Boss !</div><div class="spb"><div class="spf" style="width:80%"></div></div><div class="slbl">Défi ultime</div></div>
+      <div class="scard bo" onclick="startSub('bo')" style="grid-column:1/-1"><div class="sico">👹</div><div class="snm">Boss · Défi ultime</div><div class="spb"><div class="spf" style="width:80%;background:var(--gold)"></div></div><div class="slbl">Questions difficiles de toutes les matières</div></div>
     </div>
     <div class="sec-title">🏆 Badges</div>
     <div class="bdgwrap" id="bdgwrap"></div>
@@ -273,7 +327,32 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="mwrap">
       <div class="mit"><div class="mico">🎯</div><div class="mtx"><div class="mnm">Faire 5 exercices</div><div class="mpr" id="m1p">0 / 5</div></div><div class="mbar"><div class="mbf" id="m1b" style="width:0%"></div></div></div>
       <div class="mit"><div class="mico">✅</div><div class="mtx"><div class="mnm">3 bonnes réponses d'affilée</div><div class="mpr" id="m2p">0 / 3</div></div><div class="mbar"><div class="mbf" id="m2b" style="width:0%"></div></div></div>
-      <div class="mit"><div class="mico">✍️</div><div class="mtx"><div class="mnm">Essayer la Conjugaison</div><div class="mpr" id="m3p">0 / 1</div></div><div class="mbar"><div class="mbf" id="m3b" style="width:0%"></div></div></div>
+      <div class="mit"><div class="mico">📗</div><div class="mtx"><div class="mnm">Faire une leçon de conjugaison</div><div class="mpr" id="m3p">0 / 1</div></div><div class="mbar"><div class="mbf" id="m3b" style="width:0%"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON SCREEN -->
+<div id="s-lesson" class="sc">
+  <div class="lesson-hdr">
+    <button class="btn btn-sm" onclick="goHome()">← Retour</button>
+    <div class="lesson-title">📗 Leçon de Conjugaison</div>
+  </div>
+  <div class="lesson-wrap">
+    <div class="lesson-section">
+      <div class="lesson-section-title">Choisir un temps</div>
+      <div class="tense-tabs" id="tense-tabs">
+        <button class="tense-tab active" onclick="showTense('present',this)">Présent</button>
+        <button class="tense-tab" onclick="showTense('passe',this)">Passé composé</button>
+        <button class="tense-tab" onclick="showTense('imparfait',this)">Imparfait</button>
+        <button class="tense-tab" onclick="showTense('futur',this)">Futur simple</button>
+      </div>
+      <div id="tense-content"></div>
+    </div>
+    <div class="lesson-section">
+      <div class="lesson-section-title">🎯 Prêt à t'entraîner ?</div>
+      <div style="font-size:var(--fsm);color:var(--mut);margin-bottom:.7rem">Maintenant que tu connais la règle, mets-la en pratique !</div>
+      <button class="start-practice-btn" onclick="startSub('cj');S.mis.lc=1;save()">✍️ Lancer les exercices de conjugaison</button>
     </div>
   </div>
 </div>
@@ -286,14 +365,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="qlbl" id="qlbl">📖 Français</div>
       <div class="qct" id="qct">1/6</div>
     </div>
-    <div class="bwrap"><div class="bfill xpfill" id="qprog" style="width:0%"></div></div>
+    <div class="bwrap"><div class="bfill" id="qprog" style="width:0%"></div></div>
     <div class="trow">
       <span>⏱️ Temps</span>
-      <span id="combo-indicator" style="font-weight:800;color:var(--en2);display:none">⚡ ×<span id="combo-mult">1</span></span>
+      <span id="combo-ind" style="font-weight:800;color:var(--en2);display:none">⚡×<span id="combo-n">1</span></span>
       <span class="tbdg" id="tbdg">30</span>
     </div>
     <div class="qcard">
-      <button class="abtn-audio hide" id="audiobtn" onclick="speak()" title="Écouter">🔊</button>
+      <button class="abtn-audio hide" id="audiobtn" onclick="speak()">🔊</button>
       <div class="dchip easy" id="dchip">Facile</div>
       <div class="qemj" id="qemj">❓</div>
       <div class="qtx" id="qtx">Chargement…</div>
@@ -313,7 +392,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <div class="si"><div class="sv" id="st-xp">+0</div><div class="sl">XP</div></div>
       <div class="si"><div class="sv" id="st-co">+0</div><div class="sl">Pièces</div></div>
       <div class="si"><div class="sv" id="st-ti">0s</div><div class="sl">Temps</div></div>
-      <div class="si"><div class="sv" id="st-cb">×1</div><div class="sl">Combo max</div></div>
+      <div class="si"><div class="sv" id="st-cb">×1</div><div class="sl">Combo</div></div>
     </div>
     <div class="dres same" id="dres">✅ Niveau maintenu</div>
     <div class="nbbox" id="nbbox"><div class="nbsup">🎉 Nouveau badge !</div><div class="nbnm" id="nbnm">🌟</div></div>
@@ -332,28 +411,24 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   </div>
   <div class="wrap" style="padding-top:.5rem">
     <div class="pgrid" id="pgrid"></div>
-    <div class="rwrap">
-      <div class="rtit2">📊 Progression par matière</div>
-      <div id="radar"></div>
-    </div>
-    <div style="background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.9rem 1rem">
-      <div class="rtit2" style="margin-bottom:.6rem">🎮 Difficulté automatique</div>
+    <div class="rwrap"><div class="rtit2">📊 Progression par matière</div><div id="radar"></div></div>
+    <div style="background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.85rem .95rem">
+      <div class="rtit2" style="margin-bottom:.6rem">🎮 Difficulté</div>
       <div id="pardiff"></div>
-      <div style="margin-top:.6rem;display:flex;gap:.5rem;flex-wrap:wrap" id="force-btns"></div>
-      <div style="font-size:var(--fxs);color:var(--mut);margin-top:.5rem;line-height:1.45">💡 Monte automatiquement si Baptiste réussit plus de 85% sur 3 sessions, descend sous 50%.</div>
+      <div style="margin-top:.55rem;display:flex;gap:.45rem;flex-wrap:wrap" id="force-btns"></div>
     </div>
     <div class="hwrap"><div class="htit">🕐 Historique</div><div id="hist"></div></div>
     <div class="twrap"><div class="ttit">💡 Conseils</div><div id="tips"></div></div>
-    <div style="background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.9rem 1rem">
-      <div class="rtit2" style="margin-bottom:.6rem">🔐 Changer le code PIN</div>
+    <div style="background:var(--s2);border:2px solid var(--brd);border-radius:var(--r);padding:.85rem .95rem">
+      <div class="rtit2" style="margin-bottom:.55rem">🔐 Changer le code PIN</div>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap">
         <input type="password" id="newpin" class="inp" placeholder="Nouveau PIN (4 chiffres)" maxlength="4" pattern="[0-9]*" inputmode="numeric">
-        <button class="btn btn-pu" style="width:auto;padding:.55rem 1rem;font-size:var(--fxs)" onclick="chgPin()">Enregistrer</button>
+        <button class="btn btn-pu" style="width:auto;padding:.5rem .9rem;font-size:var(--fxs)" onclick="chgPin()">Enregistrer</button>
       </div>
-      <div id="pinmsg" style="font-size:var(--fxs);margin-top:.4rem"></div>
+      <div id="pinmsg" style="font-size:var(--fxs);margin-top:.35rem"></div>
     </div>
     <div style="text-align:center;padding-bottom:1rem">
-      <button onclick="resetAll()" style="background:transparent;border:2px solid var(--er);border-radius:10px;padding:.45rem 1rem;color:var(--er);font-size:var(--fxs);font-weight:700;font-family:inherit;cursor:pointer">🗑️ Remettre à zéro</button>
+      <button onclick="resetAll()" style="background:transparent;border:2px solid var(--er);border-radius:10px;padding:.4rem .9rem;color:var(--er);font-size:var(--fxs);font-weight:700;font-family:inherit;cursor:pointer">🗑️ Remettre à zéro</button>
     </div>
   </div>
 </div>
@@ -366,44 +441,188 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="fbxp" id="fbxp">+20 XP</div>
     <div class="fbexbox">
       <div class="fbex-rule" id="fbex-rule">📌 La règle</div>
-      <div class="fbex-detail" id="fbex-detail">Explication…</div>
+      <div class="fbex-detail" id="fbex-detail"></div>
       <div class="fbex-example" id="fbex-example"></div>
     </div>
-    <div class="fbdr" id="fbdr"></div>
     <button class="nxtbtn" onclick="nextQ()">Suivant →</button>
   </div>
 </div>
 
-<!-- LEVEL UP -->
+<!-- POKEMON UNLOCK OVERLAY -->
+<div class="poke-overlay" id="poke-overlay">
+  <div class="poke-unlock-title" id="pu-title">🎉 Niveau 2 atteint !</div>
+  <div class="poke-unlock-sub" id="pu-sub">Tu as gagné un nouveau Pokémon !</div>
+  <div id="poke-card-container"></div>
+  <button class="btn btn-pu" style="max-width:220px;margin-top:.5rem" onclick="closePoke()">Super ! ✨</button>
+</div>
+
+<!-- LEVEL UP (fallback without pokemon) -->
 <div class="luov" id="luov">
   <div class="luem">🚀</div>
   <div class="luti" id="luti">Niveau 2 !</div>
-  <div class="lusu" id="lusu">Baptiste est maintenant Explorateur !</div>
+  <div class="lusu" id="lusu">Continue comme ça !</div>
   <button class="btn btn-pu" style="max-width:200px;margin-top:.5rem" onclick="closeLU()">Super ! ✨</button>
 </div>
 
+<div class="combo-float" id="combo-float"></div>
 <div class="sdot" id="sdot"></div>
 
 <script>
-// ===== CONSTANTS =====
-const SK='nce2v2_bap', PIN0='2018';
-const LEVELS=[
-  {min:0,max:150,name:'Apprenti',e:'📗'},{min:150,max:350,name:'Explorateur',e:'🔍'},
-  {min:350,max:650,name:'Aventurier',e:'⚡'},{min:650,max:1100,name:'Champion',e:'🏅'},
-  {min:1100,max:1800,name:'Expert',e:'💎'},{min:1800,max:2800,name:'Maître',e:'👑'},
-  {min:2800,max:9999,name:'Maître CE2',e:'🌟'},
+// ===== POKEMON DATA (100 levels, increasing HP) =====
+// Custom cards — names inspired by well-known Pokémon archetypes, fully original stats
+const POKEMON = [
+  // Levels 1-10: Starters & basics
+  {lv:1, name:'Bulbizarre',   type:'Plante',  hp:45,  atk:49, def:49, emoji:'🌿', color:'#4ade80', bg:'#052e16'},
+  {lv:2, name:'Salamèche',    type:'Feu',     hp:52,  atk:52, def:43, emoji:'🔥', color:'#f87171', bg:'#450a0a'},
+  {lv:3, name:'Carapuce',     type:'Eau',     hp:60,  atk:44, def:65, emoji:'💧', color:'#38bdf8', bg:'#082f49'},
+  {lv:4, name:'Aspicot',      type:'Insecte', hp:70,  atk:35, def:30, emoji:'🐛', color:'#86efac', bg:'#14532d'},
+  {lv:5, name:'Roucool',      type:'Vol',     hp:80,  atk:56, def:35, emoji:'🦅', color:'#7dd3fc', bg:'#0c4a6e'},
+  {lv:6, name:'Rattata',      type:'Normal',  hp:85,  atk:56, def:35, emoji:'🐭', color:'#d8b4fe', bg:'#3b0764'},
+  {lv:7, name:'Pikachu',      type:'Électrik',hp:95,  atk:55, def:40, emoji:'⚡', color:'#fbbf24', bg:'#451a03'},
+  {lv:8, name:'Sabelette',    type:'Sol',     hp:105, atk:75, def:60, emoji:'🏜️', color:'#fcd34d', bg:'#422006'},
+  {lv:9, name:'Nidoran♂',    type:'Poison',  hp:115, atk:57, def:40, emoji:'🦔', color:'#c084fc', bg:'#3b0764'},
+  {lv:10, name:'Mélofée',     type:'Fée',     hp:125, atk:45, def:48, emoji:'🌙', color:'#f9a8d4', bg:'#500724'},
+  // Levels 11-20
+  {lv:11, name:'Goupix',      type:'Feu',     hp:135, atk:41, def:40, emoji:'🦊', color:'#fb923c', bg:'#431407'},
+  {lv:12, name:'Ronflex',     type:'Normal',  hp:145, atk:110,def:65, emoji:'😴', color:'#a3a3a3', bg:'#171717'},
+  {lv:13, name:'Magicarpe',   type:'Eau',     hp:155, atk:10, def:55, emoji:'🐟', color:'#f97316', bg:'#431407'},
+  {lv:14, name:'Évoli',       type:'Normal',  hp:165, atk:55, def:50, emoji:'🦌', color:'#d97706', bg:'#422006'},
+  {lv:15, name:'Voltorbe',    type:'Électrik',hp:175, atk:30, def:50, emoji:'💣', color:'#eab308', bg:'#422006'},
+  {lv:16, name:'Ponyta',      type:'Feu',     hp:185, atk:85, def:55, emoji:'🦄', color:'#ef4444', bg:'#450a0a'},
+  {lv:17, name:'Mackogneur',  type:'Combat',  hp:200, atk:80, def:50, emoji:'🥊', color:'#fb7185', bg:'#4c0519'},
+  {lv:18, name:'Farfuret',    type:'Normal',  hp:215, atk:80, def:45, emoji:'🦡', color:'#a3a3a3', bg:'#171717'},
+  {lv:19, name:'Kangaskhan',  type:'Normal',  hp:230, atk:95, def:80, emoji:'🦘', color:'#d4a574', bg:'#431407'},
+  {lv:20, name:'Électhor',    type:'Électrik',hp:250, atk:112,def:75, emoji:'⚡', color:'#fde047', bg:'#422006'},
+  // Levels 21-30
+  {lv:21, name:'Sulfura',     type:'Feu',     hp:270, atk:100,def:85, emoji:'🦅', color:'#f97316', bg:'#431407'},
+  {lv:22, name:'Artikodin',   type:'Glace',   hp:290, atk:100,def:90, emoji:'❄️', color:'#bae6fd', bg:'#082f49'},
+  {lv:23, name:'Dracaufeu',   type:'Feu/Vol', hp:310, atk:109,def:78, emoji:'🐲', color:'#f97316', bg:'#431407'},
+  {lv:24, name:'Tortank',     type:'Eau',     hp:330, atk:100,def:105,emoji:'🐢', color:'#0ea5e9', bg:'#082f49'},
+  {lv:25, name:'Florizarre',  type:'Plante',  hp:350, atk:100,def:83, emoji:'🌺', color:'#22c55e', bg:'#052e16'},
+  {lv:26, name:'Raichu',      type:'Électrik',hp:370, atk:110,def:55, emoji:'⚡', color:'#fbbf24', bg:'#422006'},
+  {lv:27, name:'Nidoking',    type:'Poison',  hp:390, atk:102,def:77, emoji:'🦂', color:'#a855f7', bg:'#3b0764'},
+  {lv:28, name:'Arcanin',     type:'Feu',     hp:410, atk:110,def:80, emoji:'🐕', color:'#f97316', bg:'#431407'},
+  {lv:29, name:'Alakazam',    type:'Psy',     hp:430, atk:50, def:45, emoji:'🔮', color:'#c084fc', bg:'#3b0764'},
+  {lv:30, name:'Tygnon',      type:'Combat',  hp:455, atk:130,def:80, emoji:'🥋', color:'#fb7185', bg:'#4c0519'},
+  // Levels 31-40
+  {lv:31, name:'Scarabrute',  type:'Insecte', hp:480, atk:125,def:115,emoji:'🐞', color:'#84cc16', bg:'#1a2e05'},
+  {lv:32, name:'Smogogo',     type:'Poison',  hp:505, atk:90, def:55, emoji:'☁️', color:'#a78bfa', bg:'#2e1065'},
+  {lv:33, name:'Magneton',    type:'Acier',   hp:530, atk:95, def:70, emoji:'🔩', color:'#94a3b8', bg:'#0f172a'},
+  {lv:34, name:'Hypnomade',   type:'Psy',     hp:555, atk:86, def:60, emoji:'💤', color:'#e879f9', bg:'#4a044e'},
+  {lv:35, name:'Dodrio',      type:'Vol',     hp:580, atk:110,def:70, emoji:'🐦', color:'#92400e', bg:'#422006'},
+  {lv:36, name:'Leviator',    type:'Eau',     hp:610, atk:95, def:79, emoji:'🦈', color:'#0ea5e9', bg:'#082f49'},
+  {lv:37, name:'Ossatueur',   type:'Sol',     hp:640, atk:80, def:90, emoji:'💀', color:'#d6d3d1', bg:'#1c1917'},
+  {lv:38, name:'Hypéragon',   type:'Dragon',  hp:670, atk:100,def:80, emoji:'🐉', color:'#818cf8', bg:'#1e1b4b'},
+  {lv:39, name:'Ectoplasma',  type:'Spectre', hp:700, atk:65, def:60, emoji:'👻', color:'#7c3aed', bg:'#2e1065'},
+  {lv:40, name:'Lokhlass',    type:'Eau/Glace',hp:735,atk:85, def:90, emoji:'🦭', color:'#38bdf8', bg:'#082f49'},
+  // Levels 41-50
+  {lv:41, name:'Machopeur',   type:'Combat',  hp:770, atk:100,def:70, emoji:'💪', color:'#fb7185', bg:'#4c0519'},
+  {lv:42, name:'Noadkoko',    type:'Eau',     hp:805, atk:95, def:85, emoji:'🥥', color:'#34d399', bg:'#064e3b'},
+  {lv:43, name:'Électabuzz',  type:'Électrik',hp:840, atk:83, def:57, emoji:'⚡', color:'#fde047', bg:'#422006'},
+  {lv:44, name:'Magmar',      type:'Feu',     hp:878, atk:95, def:57, emoji:'🔥', color:'#f97316', bg:'#431407'},
+  {lv:45, name:'Mélèfeu',     type:'Feu',     hp:916, atk:105,def:79, emoji:'🦇', color:'#dc2626', bg:'#450a0a'},
+  {lv:46, name:'Pharamp',     type:'Électrik',hp:955, atk:65, def:60, emoji:'🐾', color:'#fbbf24', bg:'#422006'},
+  {lv:47, name:'Évaporoc',    type:'Roche',   hp:995, atk:100,def:100,emoji:'🪨', color:'#a8a29e', bg:'#1c1917'},
+  {lv:48, name:'Steelix',     type:'Acier',   hp:1040,atk:85, def:200,emoji:'⛓️', color:'#6b7280', bg:'#111827'},
+  {lv:49, name:'Scizor',      type:'Insecte', hp:1085,atk:130,def:100,emoji:'✂️', color:'#dc2626', bg:'#450a0a'},
+  {lv:50, name:'Tyranitar',   type:'Roche',   hp:1135,atk:134,def:110,emoji:'🦖', color:'#16a34a', bg:'#052e16'},
+  // Levels 51-60
+  {lv:51, name:'Méganium',    type:'Plante',  hp:1185,atk:82, def:100,emoji:'🦕', color:'#4ade80', bg:'#052e16'},
+  {lv:52, name:'Typhlosion',  type:'Feu',     hp:1240,atk:109,def:85, emoji:'🔥', color:'#f97316', bg:'#431407'},
+  {lv:53, name:'Aligatueur',  type:'Eau',     hp:1295,atk:105,def:90, emoji:'🐊', color:'#0ea5e9', bg:'#082f49'},
+  {lv:54, name:'Ampharos',    type:'Électrik',hp:1355,atk:85, def:85, emoji:'🐑', color:'#fbbf24', bg:'#422006'},
+  {lv:55, name:'Ursaring',    type:'Normal',  hp:1415,atk:130,def:75, emoji:'🐻', color:'#a16207', bg:'#422006'},
+  {lv:56, name:'Magnézone',   type:'Acier',   hp:1480,atk:130,def:115,emoji:'🔋', color:'#94a3b8', bg:'#0f172a'},
+  {lv:57, name:'Pokéball+',   type:'Normal',  hp:1545,atk:90, def:90, emoji:'⭕', color:'#ef4444', bg:'#450a0a'},
+  {lv:58, name:'Houndoom',    type:'Feu',     hp:1615,atk:114,def:60, emoji:'🐶', color:'#dc2626', bg:'#450a0a'},
+  {lv:59, name:'Kingdra',     type:'Eau',     hp:1685,atk:95, def:95, emoji:'🐴', color:'#0369a1', bg:'#082f49'},
+  {lv:60, name:'Steelorbe',   type:'Acier',   hp:1760,atk:140,def:130,emoji:'🔮', color:'#94a3b8', bg:'#0f172a'},
+  // Levels 61-70
+  {lv:61, name:'Lugia',       type:'Vol/Psy', hp:1840,atk:90, def:130,emoji:'🌊', color:'#bae6fd', bg:'#082f49'},
+  {lv:62, name:'Ho-Oh',       type:'Feu/Vol', hp:1925,atk:130,def:90, emoji:'🌈', color:'#f59e0b', bg:'#422006'},
+  {lv:63, name:'Entei',       type:'Feu',     hp:2015,atk:115,def:85, emoji:'🦁', color:'#ef4444', bg:'#450a0a'},
+  {lv:64, name:'Raikou',      type:'Électrik',hp:2110,atk:115,def:75, emoji:'⚡', color:'#fde047', bg:'#422006'},
+  {lv:65, name:'Suicune',     type:'Eau',     hp:2210,atk:75, def:115,emoji:'💙', color:'#38bdf8', bg:'#082f49'},
+  {lv:66, name:'Celebi',      type:'Plante',  hp:2315,atk:100,def:100,emoji:'🧚', color:'#4ade80', bg:'#052e16'},
+  {lv:67, name:'Kyogre',      type:'Eau',     hp:2425,atk:150,def:90, emoji:'🐋', color:'#0ea5e9', bg:'#082f49'},
+  {lv:68, name:'Groudon',     type:'Sol',     hp:2540,atk:150,def:140,emoji:'🌋', color:'#f97316', bg:'#431407'},
+  {lv:69, name:'Rayquaza',    type:'Dragon',  hp:2660,atk:150,def:90, emoji:'🐉', color:'#16a34a', bg:'#052e16'},
+  {lv:70, name:'Deoxys',      type:'Psy',     hp:2785,atk:150,def:50, emoji:'👾', color:'#c084fc', bg:'#2e1065'},
+  // Levels 71-80
+  {lv:71, name:'Dialga',      type:'Acier',   hp:2920,atk:120,def:120,emoji:'⏱️', color:'#818cf8', bg:'#1e1b4b'},
+  {lv:72, name:'Palkia',      type:'Eau',     hp:3060,atk:120,def:100,emoji:'💫', color:'#e879f9', bg:'#4a044e'},
+  {lv:73, name:'Giratina',    type:'Spectre', hp:3210,atk:100,def:120,emoji:'👻', color:'#7c3aed', bg:'#2e1065'},
+  {lv:74, name:'Darkrai',     type:'Ténèbres',hp:3365,atk:135,def:90, emoji:'🌑', color:'#1d4ed8', bg:'#1e3a8a'},
+  {lv:75, name:'Arceus',      type:'Normal',  hp:3530,atk:120,def:120,emoji:'🌟', color:'#fbbf24', bg:'#422006'},
+  {lv:76, name:'Zekrom',      type:'Électrik',hp:3700,atk:150,def:120,emoji:'⚡', color:'#1e293b', bg:'#020617'},
+  {lv:77, name:'Reshiram',    type:'Feu',     hp:3880,atk:150,def:120,emoji:'🔥', color:'#fef3c7', bg:'#431407'},
+  {lv:78, name:'Kyurem',      type:'Glace',   hp:4070,atk:130,def:90, emoji:'❄️', color:'#bae6fd', bg:'#082f49'},
+  {lv:79, name:'Xerneas',     type:'Fée',     hp:4270,atk:131,def:95, emoji:'🦌', color:'#f0abfc', bg:'#4a044e'},
+  {lv:80, name:'Yveltal',     type:'Ténèbres',hp:4485,atk:131,def:95, emoji:'🦅', color:'#dc2626', bg:'#450a0a'},
+  // Levels 81-90
+  {lv:81, name:'Zygarde',     type:'Dragon',  hp:4710,atk:100,def:121,emoji:'🐍', color:'#22c55e', bg:'#052e16'},
+  {lv:82, name:'Solgaleo',    type:'Psy',     hp:4950,atk:137,def:107,emoji:'☀️', color:'#fbbf24', bg:'#422006'},
+  {lv:83, name:'Lunala',      type:'Spectre', hp:5200,atk:137,def:107,emoji:'🌙', color:'#818cf8', bg:'#1e1b4b'},
+  {lv:84, name:'Marshadow',   type:'Combat',  hp:5465,atk:125,def:80, emoji:'👥', color:'#6b7280', bg:'#111827'},
+  {lv:85, name:'Zamazenta',   type:'Combat',  hp:5745,atk:120,def:140,emoji:'🛡️', color:'#1d4ed8', bg:'#1e3a8a'},
+  {lv:86, name:'Zacian',      type:'Fée',     hp:6045,atk:150,def:115,emoji:'⚔️', color:'#7c3aed', bg:'#2e1065'},
+  {lv:87, name:'Éthernatos',  type:'Psy',     hp:6365,atk:145,def:105,emoji:'👁️', color:'#a855f7', bg:'#3b0764'},
+  {lv:88, name:'Calyrex',     type:'Psy',     hp:6705,atk:80, def:80, emoji:'👑', color:'#e879f9', bg:'#4a044e'},
+  {lv:89, name:'Koraidon',    type:'Combat',  hp:7065,atk:135,def:115,emoji:'🦖', color:'#f97316', bg:'#431407'},
+  {lv:90, name:'Miraidon',    type:'Électrik',hp:7445,atk:135,def:115,emoji:'🤖', color:'#818cf8', bg:'#1e1b4b'},
+  // Levels 91-100
+  {lv:91, name:'Palafin',     type:'Eau',     hp:7850,atk:140,def:85, emoji:'🐬', color:'#38bdf8', bg:'#082f49'},
+  {lv:92, name:'Gholdengo',   type:'Acier',   hp:8280,atk:133,def:91, emoji:'👻', color:'#fbbf24', bg:'#422006'},
+  {lv:93, name:'Roaring Moon',type:'Dragon',  hp:8735,atk:139,def:71, emoji:'🌕', color:'#7c3aed', bg:'#2e1065'},
+  {lv:94, name:'Iron Valiant',type:'Fée',     hp:9215,atk:130,def:90, emoji:'🤺', color:'#c084fc', bg:'#3b0764'},
+  {lv:95, name:'Terapagos',   type:'Normal',  hp:9730,atk:100,def:100,emoji:'🌀', color:'#0ea5e9', bg:'#082f49'},
+  {lv:96, name:'Mewtwo',      type:'Psy',     hp:10285,atk:154,def:90,emoji:'🧬', color:'#a855f7', bg:'#3b0764'},
+  {lv:97, name:'Méga-Rayquaza',type:'Dragon', hp:10880,atk:180,def:100,emoji:'🐲',color:'#16a34a', bg:'#052e16'},
+  {lv:98, name:'Méga-Mewtwo', type:'Psy',     hp:11515,atk:190,def:100,emoji:'🧬',color:'#e879f9', bg:'#4a044e'},
+  {lv:99, name:'Arceus Ultime',type:'Divin',  hp:12195,atk:160,def:160,emoji:'✨',color:'#fbbf24', bg:'#422006'},
+  {lv:100,name:'Champion CE2', type:'Légend.', hp:12920,atk:200,def:200,emoji:'🏆',color:'#ffd700', bg:'#422006'},
 ];
+
+// XP needed to reach level N (unlimited scaling)
+function xpForLevel(n){
+  if(n<=1)return 0;
+  // Progressive: each level needs more XP. Formula: sum of 100*i^1.4 for i=1..n-1
+  let total=0;
+  for(let i=1;i<n;i++) total+=Math.round(100*Math.pow(i,1.35));
+  return total;
+}
+// Precompute XP thresholds for levels 1-100
+const XP_TABLE=[];
+for(let i=0;i<=100;i++) XP_TABLE[i]=xpForLevel(i+1);
+
+function getLevelFromXP(xp){
+  let lv=1;
+  for(let i=99;i>=0;i--){if(xp>=XP_TABLE[i]){lv=i+1;break;}}
+  return Math.min(100,lv);
+}
+function getPokeForLevel(lv){
+  const idx=Math.min(lv-1,99);
+  return POKEMON[idx];
+}
+
+// ===== CONSTANTS =====
+const SK='nce2v3_bap', PIN0='2018';
 const BADGES=[
   {id:'first',name:'🌟 Première étoile',fn:s=>s.tot>=1},
   {id:'reader',name:'📚 Lecteur',fn:s=>(s.done.fr||0)>=5},
   {id:'math',name:'🔢 Mathmagicien',fn:s=>(s.done.ma||0)>=5},
   {id:'hello',name:'🇬🇧 Hello World!',fn:s=>(s.done.en||0)>=3},
   {id:'conj',name:'✍️ Conjugueur',fn:s=>(s.done.cj||0)>=5},
+  {id:'lesson',name:'📗 Élève studieux',fn:s=>(s.mis.lc||0)>=1},
   {id:'fire',name:'🔥 En feu !',fn:s=>s.maxS>=5},
   {id:'perf',name:'💯 Parfait !',fn:s=>s.perf>=1},
   {id:'hard',name:'💪 Courageux',fn:s=>(s.hOk||0)>=5},
-  {id:'boss',name:'👹 Tueur de Boss',fn:s=>(s.bossWin||0)>=1},
-  {id:'combo',name:'⚡ Combo Master',fn:s=>(s.maxCombo||0)>=3},
+  {id:'boss',name:'👹 Boss Buster',fn:s=>(s.bossWin||0)>=1},
+  {id:'combo',name:'⚡ Combo ×5',fn:s=>(s.maxCombo||0)>=5},
+  {id:'lv10',name:'🎖️ Niveau 10',fn:s=>getLevelFromXP(s.xp)>=10},
+  {id:'lv25',name:'🥈 Niveau 25',fn:s=>getLevelFromXP(s.xp)>=25},
+  {id:'lv50',name:'🥇 Niveau 50',fn:s=>getLevelFromXP(s.xp)>=50},
+  {id:'lv100',name:'👑 Maître CE2 Lv.100',fn:s=>getLevelFromXP(s.xp)>=100},
   {id:'c100',name:'💯 Centurion',fn:s=>s.tot>=100},
   {id:'s10',name:'🌪️ Inarrêtable',fn:s=>s.maxS>=10},
 ];
@@ -416,112 +635,173 @@ const DIFF={
 const LBLS={fr:'📖 Français',ma:'🔢 Maths',en:'🇬🇧 Anglais',cj:'✍️ Conjugaison',rv:'🔄 Révisions',bo:'👹 Boss'};
 const GOODS=['Bravo !','Super !','Excellent !','Parfait !','Génial !','Incroyable !','Waouh !'];
 
-// ===== QUESTION BANK =====
+// ===== QUESTIONS (condensed from v2, same full bank) =====
 const QDB={
   fr:[
-    // EASY - Grammaire de base
-    {d:'easy',e:'🔤',q:'Combien de syllabes dans « chat » ?',h:'Compte les sons',a:['1','2','3','4'],c:0,xp:12,rule:'Les syllabes',detail:'Une syllabe = un son prononcé d\'un seul souffle.',ex:'chat = 1 syllabe · ma-man = 2 · cho-co-lat = 3'},
+    {d:'easy',e:'🔤',q:'Combien de syllabes dans « chocolat » ?',h:'Cho-co-lat',a:['3','2','4','1'],c:0,xp:12,rule:'Les syllabes',detail:'Une syllabe = un son prononcé d\'un seul souffle.',ex:'Cho-co-lat = 3 syllabes · ma-man = 2'},
     {d:'easy',e:'📖',q:'Quel est le pluriel de « chat » ?',h:'On ajoute un s',a:['chats','chates','chaux','chatts'],c:0,xp:12,rule:'Le pluriel',detail:'En général, on ajoute un -s au nom pour le mettre au pluriel.',ex:'un chat → des chats · un livre → des livres'},
-    {d:'easy',e:'✏️',q:'Quel mot est un verbe dans : « Le chien court » ?',h:"L'action du chien",a:['court','chien','le','un'],c:0,xp:12,rule:'Le verbe',detail:'Le verbe indique l\'action ou l\'état du sujet.',ex:'Le chien COURT (action) · Il EST fatigué (état)'},
-    {d:'easy',e:'📝',q:'Conjugue « être » à la 1re personne : Je ___ ',h:'Verbe être',a:['suis','est','sont','as'],c:0,xp:12,rule:'Conjugaison : être',detail:'ÊTRE au présent : je suis, tu es, il est, nous sommes, vous êtes, ils sont.',ex:'Je SUIS content · Tu ES grand'},
+    {d:'easy',e:'✏️',q:'Quel mot est un verbe dans : « Le chien court » ?',h:"L'action",a:['court','chien','le','un'],c:0,xp:12,rule:'Le verbe',detail:'Le verbe indique l\'action ou l\'état du sujet. On le trouve en conjuguant.',ex:'Le chien COURT vite · Le soleil BRILLE'},
+    {d:'easy',e:'📝',q:'Conjugue « être » à la 1re personne : Je ___ ',h:'Verbe être',a:['suis','est','sont','as'],c:0,xp:12,rule:'Présent - ÊTRE',detail:'ÊTRE : je suis, tu es, il est, nous sommes, vous êtes, ils sont.',ex:'Je SUIS content · Tu ES grand · Nous SOMMES amis'},
     {d:'easy',e:'📚',q:"Quel est le féminin de « ami » ?",h:'On ajoute -e',a:['amie','amies','ames','amis'],c:0,xp:12,rule:'Le féminin',detail:'En général, on ajoute un -e pour former le féminin.',ex:'ami → amie · joli → jolie · grand → grande'},
-    {d:'easy',e:'🌈',q:'Quel mot est un nom dans : « La jolie fleur rouge » ?',h:'Le nom désigne une chose',a:['fleur','jolie','rouge','la'],c:0,xp:15,rule:'Le nom commun',detail:'Le nom commun désigne une personne, un animal, une chose ou une idée.',ex:'FLEUR, maison, chien, bonheur sont des noms communs'},
-    {d:'easy',e:'📝',q:'Quel est le contraire de « grand » ?',h:'L\'antonyme',a:['petit','gros','fort','beau'],c:0,xp:12,rule:'Les antonymes',detail:'Un antonyme est un mot de sens opposé.',ex:'grand ↔ petit · chaud ↔ froid · rapide ↔ lent'},
-    // MEDIUM
-    {d:'medium',e:'📝',q:'Comment conjugue-t-on « aller » à la 1re personne du présent ?',h:'Je ___',a:['vais','alle','ais','vois'],c:0,xp:20,rule:'Conjugaison : aller',detail:'ALLER est irrégulier : je vais, tu vas, il va, nous allons, vous allez, ils vont.',ex:'Je VAIS à l\'école · Tu VAS au parc'},
-    {d:'medium',e:'✍️',q:'Quel est le féminin de « boulanger » ?',h:'',a:['boulangère','boulangeuse','boulangeresse','boulanière'],c:0,xp:20,rule:'Féminin en -ère',detail:'Les noms en -er font leur féminin en -ère.',ex:'boulanger → boulangère · épicier → épicière'},
-    {d:'medium',e:'📖',q:'Nature du mot souligné : « Le CHAT dort »',h:'',a:['Nom commun','Verbe','Adjectif','Déterminant'],c:0,xp:20,rule:'Le nom commun',detail:'Le nom commun désigne un être, une chose. Il est souvent précédé d\'un déterminant (le, la, un, une…).',ex:'le CHAT, une MAISON, des AMIS'},
-    {d:'medium',e:'📚',q:"Quel est le pluriel de « cheval » ?",h:'Attention, irrégulier !',a:['chevaux','chevals','chevales','cheveau'],c:0,xp:20,rule:'Pluriel en -aux',detail:'Les noms en -al font leur pluriel en -aux.',ex:'cheval → chevaux · journal → journaux · animal → animaux'},
-    {d:'medium',e:'🌟',q:"Conjugue « chanter » à la 3e personne du pluriel (présent) :",h:'Ils ___',a:['chantent','chantont','chante','chantons'],c:0,xp:22,rule:'1er groupe au présent',detail:'Au présent, les verbes en -er (1er groupe) prennent -ent à la 3e personne du pluriel.',ex:'ils chantENT · elles danSENT · ils joUENT'},
-    {d:'medium',e:'🔤',q:'Quel son fait le « c » dans « cerise » ?',h:'Devant e, i, y...',a:['[s] comme dans "sac"','[k] comme dans "car"','[ch] comme dans "chat"','Muet'],c:0,xp:20,rule:'Le son du C',detail:'Le C se prononce [s] devant E, I et Y. Il se prononce [k] devant A, O, U.',ex:'Cerise [s] · Cinéma [s] · Mais : Car [k] · Col [k]'},
-    {d:'medium',e:'📖',q:'Dans « Les enfants jouent dans le jardin. » Quel est le sujet ?',h:'Qui fait l\'action ?',a:['Les enfants','jouent','jardin','dans'],c:0,xp:22,rule:'Le sujet',detail:'Le sujet indique qui fait l\'action du verbe. On le trouve en demandant "Qui est-ce qui... ?"',ex:'Qui est-ce qui joue ? → Les ENFANTS = sujet'},
-    // HARD
-    {d:'hard',e:'✏️',q:"Trouve l'intrus (pas du 1er groupe) :",h:'',a:['finir','chanter','marcher','danser'],c:0,xp:30,rule:'Les groupes de verbes',detail:'1er groupe : verbes en -ER (chanter, marcher…)\n2ème groupe : verbes en -IR (finir, choisir…)',ex:'FINIR = 2ème groupe car il fait "finissant" · chanter = 1er groupe'},
-    {d:'hard',e:'🔡',q:"Dans « elle mange une pomme », quel mot est le COD ?",h:'Verbe + quoi ?',a:['une pomme','elle','mange','une'],c:0,xp:32,rule:'Le COD',detail:'Le Complément d\'Objet Direct répond à la question "Qui ?" ou "Quoi ?" après le verbe, sans préposition.',ex:'Elle mange QUOI ? → une pomme = COD'},
-    {d:'hard',e:'📝',q:"Quelle phrase contient un adjectif qualificatif ?",h:'',a:['Le chat noir dort.','Je mange une pomme.','Il court vite.','Elle chante.'],c:0,xp:32,rule:'L\'adjectif qualificatif',detail:'L\'adjectif qualificatif décrit ou qualifie le nom. Il s\'accorde en genre et en nombre avec lui.',ex:'Le chat NOIR (noir qualifie chat)'},
-    {d:'hard',e:'🌟',q:"Quel est le synonyme de « courageux » ?",h:'Même sens !',a:['brave','peureux','faible','timide'],c:0,xp:28,rule:'Les synonymes',detail:'Un synonyme est un mot qui a le même sens ou un sens proche.',ex:'courageux = brave = vaillant ≠ peureux (antonyme)'},
-    // EXPERT
-    {d:'expert',e:'🔬',q:"Dans « La petite fille mange une pomme rouge », combien d'adjectifs ?",h:'',a:['2','1','3','0'],c:0,xp:50,rule:'Compter les adjectifs',detail:'Un adjectif qualificatif qualifie un nom. Il peut être placé avant ou après le nom.',ex:'La PETITE fille (petite qualifie fille) · une pomme ROUGE (rouge qualifie pomme) = 2 adjectifs'},
-    {d:'expert',e:'🏆',q:"Quel est le COD dans : « Baptiste lit un livre passionnant » ?",h:'',a:['un livre passionnant','Baptiste','lit','passionnant'],c:0,xp:50,rule:'Le COD étendu',detail:'Le COD peut être un groupe nominal (déterminant + nom + adjectif).',ex:'Baptiste lit QUOI ? → un livre passionnant (tout le groupe) = COD'},
-    {d:'expert',e:'🎯',q:"Dans « Il chante bien », le mot « bien » est :",h:'',a:['Un adverbe','Un adjectif','Un nom','Un verbe'],c:0,xp:55,rule:'L\'adverbe',detail:'L\'adverbe modifie un verbe, un adjectif ou un autre adverbe. Il est invariable.',ex:'Il chante BIEN (modifie le verbe chante) · Elle est TRÈS grande (modifie l\'adjectif)'},
+    {d:'easy',e:'🔵',q:"Quel mot est un déterminant dans : « La petite maison » ?",h:'Devant le nom',a:['La','petite','maison','petit'],c:0,xp:12,rule:'Le déterminant',detail:'Le déterminant se place avant le nom. Ex : le, la, les, un, une, des.',ex:'LA petite maison · UN grand jardin · DES amis'},
+    {d:'easy',e:'📝',q:"Quel est le contraire de « grand » ?",h:'L\'antonyme',a:['petit','gros','fort','beau'],c:0,xp:12,rule:'Les antonymes',detail:'Un antonyme est un mot de sens opposé.',ex:'grand ↔ petit · chaud ↔ froid · rapide ↔ lent'},
+    {d:'medium',e:'📝',q:'Comment conjugue-t-on « aller » à la 1re personne du présent ?',h:'Je ___',a:['vais','alle','ais','vois'],c:0,xp:20,rule:'Présent - ALLER',detail:'ALLER est irrégulier : je vais, tu vas, il va, nous allons, vous allez, ils vont.',ex:'Je VAIS à l\'école · Ils VONT au parc · Nous ALLONS dormir'},
+    {d:'medium',e:'✍️',q:'Quel est le féminin de « boulanger » ?',h:'',a:['boulangère','boulangeuse','boulangeresse','boulanière'],c:0,xp:20,rule:'Féminin en -ère',detail:'Les noms en -er font leur féminin en -ère.',ex:'boulanger → boulangère · épicier → épicière · berger → bergère'},
+    {d:'medium',e:'📖',q:'Dans « Les enfants jouent. » Quel est le sujet ?',h:'Qui fait l\'action ?',a:['Les enfants','jouent','jardin','dans'],c:0,xp:20,rule:'Le sujet',detail:'Le sujet indique qui fait l\'action. On le trouve en demandant "Qui est-ce qui... ?"',ex:'Qui joue ? → Les ENFANTS = sujet'},
+    {d:'medium',e:'📚',q:"Quel est le pluriel de « cheval » ?",h:'Irrégulier !',a:['chevaux','chevals','chevales','cheveau'],c:0,xp:20,rule:'Pluriel en -aux',detail:'Les noms en -al font leur pluriel en -aux.',ex:'cheval→chevaux · journal→journaux · animal→animaux'},
+    {d:'medium',e:'🌟',q:"Conjugue « chanter » à la 3e personne du pluriel (présent) :",h:'Ils ___',a:['chantent','chantont','chante','chantons'],c:0,xp:22,rule:'1er groupe au présent',detail:'Les verbes en -er au présent : -e, -es, -e, -ons, -ez, -ent.',ex:'ils chantENT · elles danSENT · ils jouENT'},
+    {d:'medium',e:'🔤',q:'Quel son fait le « c » dans « cerise » ?',h:'Devant e, i, y...',a:['[s] comme sac','[k] comme car','[ch] comme chat','Muet'],c:0,xp:20,rule:'Le son du C',detail:'Le C fait [s] devant E, I, Y. Il fait [k] devant A, O, U.',ex:'Cerise [s] · Cinéma [s] · Mais : Car [k] · Col [k]'},
+    {d:'hard',e:'✏️',q:"Trouve l'intrus (pas du 1er groupe) :",h:'',a:['finir','chanter','marcher','danser'],c:0,xp:30,rule:'Groupes de verbes',detail:'1er groupe = verbes en -ER. 2ème groupe = verbes en -IR (qui font -issant).',ex:'FINIR → finissant = 2ème groupe · Chanter = 1er groupe'},
+    {d:'hard',e:'🔡',q:"Dans « elle mange une pomme », quel mot est le COD ?",h:'Verbe + quoi ?',a:['une pomme','elle','mange','une'],c:0,xp:32,rule:'Le COD',detail:'Le COD répond à "qui ?" ou "quoi ?" après le verbe, sans préposition.',ex:'Elle mange QUOI ? → une pomme = COD'},
+    {d:'hard',e:'📝',q:"Quelle phrase contient un adjectif qualificatif ?",h:'',a:['Le chat noir dort.','Je mange une pomme.','Il court vite.','Elle chante.'],c:0,xp:32,rule:'L\'adjectif qualificatif',detail:'L\'adjectif qualificatif décrit un nom. Il s\'accorde en genre et nombre.',ex:'Le chat NOIR (noir qualifie chat) · Une belle fleur'},
+    {d:'expert',e:'🔬',q:"Dans « La petite fille mange une pomme rouge », combien d'adjectifs ?",h:'',a:['2','1','3','0'],c:0,xp:50,rule:'Compter les adjectifs',detail:'Un adjectif qualifie un nom. Il peut être avant ou après le nom.',ex:'La PETITE fille + une pomme ROUGE = 2 adjectifs'},
+    {d:'expert',e:'🎯',q:"Dans « Il chante bien », le mot « bien » est :",h:'',a:['Un adverbe','Un adjectif','Un nom','Un verbe'],c:0,xp:55,rule:'L\'adverbe',detail:'L\'adverbe modifie un verbe, un adjectif ou un autre adverbe. Il est invariable.',ex:'Il chante BIEN · Elle court VITE · Il est TRÈS grand'},
   ],
   ma:[
-    // EASY
-    {d:'easy',e:'🔢',q:'Combien font 3 + 4 ?',h:'',a:['7','6','8','5'],c:0,xp:10,rule:'L\'addition',detail:'L\'addition c\'est assembler des quantités. 3 + 4 = 7.',ex:'3 pommes + 4 pommes = 7 pommes 🍎'},
-    {d:'easy',e:'➕',q:'Combien font 5 × 2 ?',h:'Table du 2',a:['10','7','12','8'],c:0,xp:10,rule:'La multiplication',detail:'5 × 2 = 5 + 5 = 10. Multiplier, c\'est additionner plusieurs fois le même nombre.',ex:'5 × 2 = 5 + 5 = 10 🌟'},
-    {d:'easy',e:'📏',q:'1 mètre = combien de centimètres ?',h:'',a:['100 cm','10 cm','1000 cm','50 cm'],c:0,xp:12,rule:'Les mesures de longueur',detail:'1 mètre = 100 centimètres. 1 km = 1000 m.',ex:'Une règle de 30 cm · Un homme de 1,70 m = 170 cm'},
-    {d:'easy',e:'🔢',q:"Quel est le double de 6 ?",h:'× 2',a:['12','11','10','13'],c:0,xp:10,rule:'Le double',detail:'Le double d\'un nombre = ce nombre × 2.',ex:'Double de 6 = 6 × 2 = 12 · Double de 9 = 18'},
-    {d:'easy',e:'🍕',q:'J\'ai 10 bonbons. J\'en mange 3. Combien en reste-t-il ?',h:'Soustraction',a:['7','3','13','8'],c:0,xp:12,rule:'La soustraction',detail:'La soustraction enlève une quantité. 10 − 3 = 7.',ex:'10 bonbons − 3 mangés = 7 restants 🍬'},
-    // MEDIUM
-    {d:'medium',e:'🔢',q:'Combien font 7 × 8 ?',h:'Table du 7',a:['56','54','64','48'],c:0,xp:20,rule:'Table de 7',detail:'7 × 8 = 56. Astuce : 7 × 8 = 7 × 4 × 2 = 28 × 2 = 56.',ex:'7 × 1=7 · 7×2=14 · 7×3=21 · 7×4=28 · 7×5=35 · 7×6=42 · 7×7=49 · 7×8=56'},
-    {d:'medium',e:'➕',q:'234 + 158 = ?',h:'Effectue la pose',a:['392','382','372','402'],c:0,xp:25,rule:'Addition posée',detail:'On pose l\'addition en colonnes : unités sous unités, dizaines sous dizaines. On commence par les unités.',ex:'4+8=12 (je pose 2, retiens 1) · 3+5+1=9 · 2+1=3 → 392'},
-    {d:'medium',e:'🔢',q:"Quelle est la moitié de 84 ?",h:'÷ 2',a:['42','48','36','40'],c:0,xp:20,rule:'La moitié',detail:'La moitié d\'un nombre = ce nombre ÷ 2.',ex:'Moitié de 84 = 84 ÷ 2 = 42 · Moitié de 60 = 30'},
-    {d:'medium',e:'🕐',q:"Il est 9h45. Dans 30 min, quelle heure ?",h:'',a:['10h15','10h45','9h15','10h30'],c:0,xp:22,rule:'Calculer l\'heure',detail:'9h45 + 30 min : il manque 15 min pour arriver à 10h00, puis 15 min de plus → 10h15.',ex:'9h45 + 15 min = 10h00 · 10h00 + 15 min = 10h15'},
-    {d:'medium',e:'📐',q:"Un carré a 4 côtés de 5 cm. Son périmètre ?",h:'P = 4 × côté',a:['20 cm','16 cm','25 cm','10 cm'],c:0,xp:25,rule:'Périmètre du carré',detail:'Le périmètre d\'un carré = côté × 4 (car tous les côtés sont égaux).',ex:'Côté = 5 cm → P = 5 × 4 = 20 cm'},
-    {d:'medium',e:'🔢',q:"Quel chiffre est à la place des dizaines dans 374 ?",h:'Centaines / Dizaines / Unités',a:['7','3','4','37'],c:0,xp:22,rule:'La numération',detail:'Dans un nombre à 3 chiffres : centaines | dizaines | unités.',ex:'374 : 3 centaines | 7 dizaines | 4 unités'},
-    {d:'medium',e:'🍬',q:'Si j\'ai 36 bonbons à partager en 4 parts égales, chaque part ?',h:'Division',a:['9','8','7','6'],c:0,xp:22,rule:'La division',detail:'36 ÷ 4 = 9. On cherche le nombre qui multiplié par 4 donne 36.',ex:'4 × 9 = 36 → 36 ÷ 4 = 9 bonbons par enfant'},
-    // HARD
-    {d:'hard',e:'➖',q:'503 − 248 = ?',h:'',a:['255','265','245','275'],c:0,xp:30,rule:'Soustraction avec retenue',detail:'On pose la soustraction. 3−8 impossible → on emprunte : 13−8=5. 0−1−4 impossible → on emprunte : 10−1−4=5. 4−2=2. → 255.',ex:'503 − 248 = 255'},
-    {d:'hard',e:'🔢',q:'Complète : 9 × __ = 72',h:'Table du 9',a:['8','7','9','6'],c:0,xp:30,rule:'Table de 9',detail:'9 × 8 = 72. Astuce : 9 × n = 10 × n − n.',ex:'9 × 8 = 10 × 8 − 8 = 80 − 8 = 72'},
-    {d:'hard',e:'📐',q:'Rectangle 6 cm × 4 cm. Périmètre ?',h:'P = 2×(L+l)',a:['20 cm','24 cm','10 cm','12 cm'],c:0,xp:32,rule:'Périmètre du rectangle',detail:'Périmètre = 2 × (longueur + largeur) car un rectangle a 2 paires de côtés égaux.',ex:'P = 2 × (6 + 4) = 2 × 10 = 20 cm'},
-    {d:'hard',e:'🔢',q:'Quel est le triple de 15 ?',h:'× 3',a:['45','30','35','40'],c:0,xp:28,rule:'Le triple',detail:'Le triple d\'un nombre = ce nombre × 3.',ex:'Triple de 15 = 15 × 3 = 45 · Triple de 10 = 30'},
-    // EXPERT
-    {d:'expert',e:'🏆',q:"Une pizza coûte 12€. Baptiste en achète 3 et paye avec 50€. Combien reçoit-il ?",h:'',a:['14€','12€','38€','16€'],c:0,xp:55,rule:'Problème à plusieurs étapes',detail:'Étape 1 : 3 pizzas = 3 × 12 = 36€. Étape 2 : Monnaie = 50 − 36 = 14€.',ex:'3 × 12 = 36 · 50 − 36 = 14€ de monnaie'},
-    {d:'expert',e:'💎',q:"28 élèves. 3/4 sont présents. Combien ?",h:'',a:['21','24','14','7'],c:0,xp:55,rule:'Les fractions',detail:'3/4 de 28 = 28 ÷ 4 × 3 = 7 × 3 = 21.',ex:'28 ÷ 4 = 7 (= 1/4) · 7 × 3 = 21 (= 3/4)'},
-    {d:'expert',e:'🎯',q:"Train à 120 km/h. En 30 min, quelle distance ?",h:'30 min = 1/2 heure',a:['60 km','120 km','30 km','90 km'],c:0,xp:55,rule:'Vitesse et distance',detail:'En 30 minutes (= 1/2 heure), on parcourt la moitié de la distance horaire.',ex:'120 km/h ÷ 2 = 60 km en 30 minutes'},
+    {d:'easy',e:'🔢',q:'Combien font 3 + 4 ?',h:'',a:['7','6','8','5'],c:0,xp:10,rule:'L\'addition',detail:'L\'addition assemble des quantités.',ex:'3 + 4 = 7 · 5 + 6 = 11'},
+    {d:'easy',e:'➕',q:'Combien font 5 × 2 ?',h:'Table du 2',a:['10','7','12','8'],c:0,xp:10,rule:'La multiplication',detail:'Multiplier = additionner plusieurs fois le même nombre.',ex:'5 × 2 = 5 + 5 = 10'},
+    {d:'easy',e:'📏',q:'1 mètre = combien de centimètres ?',h:'',a:['100 cm','10 cm','1000 cm','50 cm'],c:0,xp:12,rule:'Mesures de longueur',detail:'1 m = 100 cm · 1 km = 1000 m.',ex:'Une règle de 30 cm · Un couloir de 3 m = 300 cm'},
+    {d:'easy',e:'🔢',q:"Quel est le double de 6 ?",h:'× 2',a:['12','11','10','13'],c:0,xp:10,rule:'Le double',detail:'Le double d\'un nombre = ce nombre × 2.',ex:'Double de 6 = 12 · Double de 8 = 16'},
+    {d:'easy',e:'🍕',q:'J\'ai 10 bonbons. J\'en mange 3. Combien reste-t-il ?',h:'Soustraction',a:['7','3','13','8'],c:0,xp:12,rule:'La soustraction',detail:'La soustraction enlève une quantité.',ex:'10 − 3 = 7'},
+    {d:'easy',e:'🔢',q:'Quel est le chiffre des dizaines dans 374 ?',h:'C / D / U',a:['7','3','4','37'],c:0,xp:12,rule:'La numération',detail:'Dans 374 : 3 centaines | 7 dizaines | 4 unités.',ex:'374 : centaines=3, dizaines=7, unités=4'},
+    {d:'medium',e:'🔢',q:'Combien font 7 × 8 ?',h:'Table du 7',a:['56','54','64','48'],c:0,xp:20,rule:'Table de 7',detail:'7 × 8 = 56. Astuce : 7 × 8 = 56 (retiens-le !)',ex:'7×7=49 · 7×8=56 · 7×9=63'},
+    {d:'medium',e:'➕',q:'234 + 158 = ?',h:'Effectue la pose',a:['392','382','372','402'],c:0,xp:25,rule:'Addition posée',detail:'On aligne les chiffres par colonnes et on commence par les unités.',ex:'4+8=12 → pose 2, retiens 1 · 3+5+1=9 · 2+1=3 → 392'},
+    {d:'medium',e:'🔢',q:"Quelle est la moitié de 84 ?",h:'÷ 2',a:['42','48','36','40'],c:0,xp:20,rule:'La moitié',detail:'La moitié = diviser par 2.',ex:'Moitié de 84 = 42 · Moitié de 60 = 30'},
+    {d:'medium',e:'🕐',q:"Il est 9h45. Dans 30 min, quelle heure ?",h:'',a:['10h15','10h45','9h15','10h30'],c:0,xp:22,rule:'Calcul d\'heure',detail:'9h45 + 15 min = 10h00, puis + 15 min = 10h15.',ex:'9h45 + 30 min = 10h15'},
+    {d:'medium',e:'📐',q:"Carré de 5 cm de côté. Son périmètre ?",h:'P = 4 × côté',a:['20 cm','16 cm','25 cm','10 cm'],c:0,xp:25,rule:'Périmètre du carré',detail:'Périmètre du carré = 4 × côté.',ex:'Côté=5 cm → P=5×4=20 cm'},
+    {d:'medium',e:'🍬',q:'36 bonbons en 4 parts égales : chaque part ?',h:'Division',a:['9','8','7','6'],c:0,xp:22,rule:'La division',detail:'36 ÷ 4 = 9. Cherche le nombre × 4 = 36.',ex:'4 × 9 = 36 → 36 ÷ 4 = 9'},
+    {d:'hard',e:'➖',q:'503 − 248 = ?',h:'',a:['255','265','245','275'],c:0,xp:30,rule:'Soustraction avec retenue',detail:'On pose en colonnes. 3-8 impossible → on emprunte.',ex:'503 − 248 = 255'},
+    {d:'hard',e:'🔢',q:'Complète : 9 × __ = 72',h:'Table du 9',a:['8','7','9','6'],c:0,xp:30,rule:'Table de 9',detail:'9 × 8 = 72. Astuce : 9×n = 10×n − n.',ex:'9 × 8 = 80 − 8 = 72'},
+    {d:'hard',e:'📐',q:'Rectangle 6 cm × 4 cm. Périmètre ?',h:'P = 2×(L+l)',a:['20 cm','24 cm','10 cm','12 cm'],c:0,xp:32,rule:'Périmètre du rectangle',detail:'P = 2 × (longueur + largeur).',ex:'P = 2 × (6+4) = 2 × 10 = 20 cm'},
+    {d:'expert',e:'🏆',q:"Pizza à 12€. 3 pizzas. Payé avec 50€. Monnaie ?",h:'Plusieurs étapes',a:['14€','12€','38€','16€'],c:0,xp:55,rule:'Problème à étapes',detail:'Étape 1 : 3 × 12 = 36€. Étape 2 : 50 − 36 = 14€.',ex:'3 × 12 = 36 · 50 − 36 = 14€'},
+    {d:'expert',e:'💎',q:"28 élèves. 3/4 présents. Combien ?",h:'',a:['21','24','14','7'],c:0,xp:55,rule:'Les fractions',detail:'3/4 de 28 = 28 ÷ 4 × 3.',ex:'28÷4=7 (=1/4) · 7×3=21 (=3/4)'},
   ],
   en:[
-    {d:'easy',e:'🇬🇧',q:"How do you say « chat » in English ?",h:"Small furry animal",a:['cat','car','can','cap'],c:0,xp:15,tts:'cat',rule:'Animals',detail:'"Chat" se traduit par "cat" en anglais.',ex:'cat 🐱 · dog 🐶 · bird 🐦 · fish 🐟'},
-    {d:'easy',e:'🎨',q:"What color is the sky ?",h:'',a:['blue','green','red','yellow'],c:0,xp:12,tts:'The sky is blue',rule:'Colours',detail:'Le ciel est bleu → The sky is blue.',ex:'blue 🔵 · red 🔴 · green 🟢 · yellow 🟡'},
-    {d:'easy',e:'🐕',q:"How do you say « chien » in English ?",h:"Man's best friend",a:['dog','pig','cat','bird'],c:0,xp:12,tts:'dog',rule:'Animals',detail:'"Chien" se traduit par "dog" en anglais.',ex:'dog 🐶 · cat 🐱 · rabbit 🐰 · horse 🐴'},
-    {d:'easy',e:'👋',q:"How do you say « bonjour » ?",h:'',a:['Hello','Goodbye','Please','Yes'],c:0,xp:12,tts:'Hello',rule:'Greetings',detail:'"Bonjour" = "Hello" ou "Hi" en anglais.',ex:'Hello / Hi = Bonjour · Goodbye = Au revoir · Good morning = Bonjour (matin)'},
-    {d:'easy',e:'🔢',q:"How do you say « trois » in English ?",h:'',a:['three','two','four','one'],c:0,xp:12,tts:'three',rule:'Numbers',detail:'Les chiffres en anglais : one (1), two (2), three (3), four (4), five (5)…',ex:'one, two, THREE, four, five, six, seven, eight, nine, ten'},
-    {d:'medium',e:'🔢',q:"How do you say « dix » in English ?",h:'',a:['ten','six','two','eight'],c:0,xp:18,tts:'ten',rule:'Numbers',detail:'six (6), seven (7), eight (8), nine (9), ten (10).',ex:'six, seven, eight, nine, TEN'},
-    {d:'medium',e:'👨‍👩‍👧',q:"How do you say « mère » in English ?",h:'',a:['mother','sister','father','brother'],c:0,xp:18,tts:'mother',rule:'Family',detail:'La famille en anglais : mother (mère), father (père), sister (sœur), brother (frère).',ex:'mother 👩 · father 👨 · sister 👧 · brother 👦'},
-    {d:'medium',e:'🍎',q:"Complete: « I ___ an apple. »",h:'Verbe avoir',a:['have','has','am','is'],c:0,xp:20,tts:'I have an apple',rule:'Verbe HAVE',detail:'HAVE = avoir. Avec I / you / we / they → have. Avec he / she / it → has.',ex:'I HAVE a cat · She HAS a dog · We HAVE two cats'},
-    {d:'medium',e:'📅',q:"What day comes after Monday ?",h:'',a:['Tuesday','Sunday','Wednesday','Thursday'],c:0,xp:18,tts:'Tuesday',rule:'Days of the week',detail:'Les jours : Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.',ex:'Monday → TUESDAY → Wednesday → Thursday → Friday → Saturday → Sunday'},
-    {d:'medium',e:'🍦',q:"How do you say « glace » in English ?",h:'Cold & sweet',a:['ice cream','bread','cake','milk'],c:0,xp:18,tts:'ice cream',rule:'Food',detail:'"Glace" = "ice cream" en anglais.',ex:'ice cream 🍦 · cake 🍰 · bread 🍞 · milk 🥛'},
-    {d:'hard',e:'🌈',q:"How many colors are in a rainbow ?",h:'',a:['seven','five','six','eight'],c:0,xp:28,tts:'A rainbow has seven colors',rule:'Numbers + nature',detail:'Un arc-en-ciel a 7 couleurs : rouge, orange, jaune, vert, bleu, indigo, violet.',ex:'A rainbow has SEVEN colors : red, orange, yellow, green, blue, indigo, violet'},
-    {d:'hard',e:'🔤',q:"Complete: « She ___ to school every day. »",h:'3rd person singular',a:['goes','go','going','went'],c:0,xp:30,tts:'She goes to school every day',rule:'Présent simple : 3e personne',detail:'Avec he / she / it, on ajoute -s ou -es au verbe au présent simple.',ex:'I go · you go · he/she/it GOES · we go · they go'},
-    {d:'hard',e:'🏫',q:"Which sentence is correct ?",h:'',a:['I am eight years old.','I have eight years.','I is eight years old.','I eight years.'],c:0,xp:32,tts:'I am eight years old',rule:'Donner son âge',detail:'En anglais on dit "I am X years old" (je suis âgé de X ans), pas "I have X years".',ex:'I AM eight years old. ✅ · I have eight years. ❌'},
-    {d:'expert',e:'💎',q:"What is the past tense of « go » ?",h:'',a:['went','goed','gone','go'],c:0,xp:50,tts:'went',rule:'Prétérit irrégulier',detail:'Le verbe "go" est irrégulier : son prétérit est "went" (pas "goed").',ex:'I go to school (présent) · Yesterday, I WENT to school (passé)'},
-    {d:'expert',e:'🏆',q:"Complete: « ___ is your favourite colour? »",h:'Question word',a:['What','Who','Where','When'],c:0,xp:50,tts:'What is your favourite colour',rule:'Les mots interrogatifs',detail:'What = quoi/quel · Who = qui · Where = où · When = quand.',ex:'WHAT is your name? (Quel est ton prénom?) · WHO is she? (Qui est-elle?)'},
-    {d:'expert',e:'🎯',q:'Which word is an adjective? « The big dog runs fast. »',h:'',a:['big','dog','runs','fast'],c:0,xp:55,tts:'big',rule:'Adjectives',detail:'Un adjectif (adjective) décrit un nom. Il se place généralement AVANT le nom en anglais.',ex:'The BIG dog (big qualifie dog) · a RED apple · a SMALL cat'},
+    {d:'easy',e:'🇬🇧',q:"How do you say « chat » ?",h:"Small furry animal",a:['cat','car','can','cap'],c:0,xp:15,tts:'cat',rule:'Animals',detail:'"Chat" = "cat".',ex:'cat 🐱 · dog 🐶 · bird 🐦 · fish 🐟'},
+    {d:'easy',e:'🎨',q:"What color is the sky ?",h:'',a:['blue','green','red','yellow'],c:0,xp:12,tts:'The sky is blue',rule:'Colours',detail:'Ciel = sky. The sky is blue.',ex:'blue 🔵 · red 🔴 · green 🟢 · yellow 🟡'},
+    {d:'easy',e:'🐕',q:"How do you say « chien » ?",h:"Best friend",a:['dog','pig','cat','bird'],c:0,xp:12,tts:'dog',rule:'Animals',detail:'"Chien" = "dog".',ex:'dog 🐶 · cat 🐱 · rabbit 🐰'},
+    {d:'easy',e:'👋',q:"How do you say « bonjour » ?",h:'',a:['Hello','Goodbye','Please','Yes'],c:0,xp:12,tts:'Hello',rule:'Salutations',detail:'"Bonjour" = "Hello" ou "Hi".',ex:'Hello / Hi = Bonjour · Goodbye = Au revoir'},
+    {d:'easy',e:'🔢',q:"How do you say « trois » ?",h:'',a:['three','two','four','one'],c:0,xp:12,tts:'three',rule:'Numbers',detail:'one(1), two(2), three(3), four(4), five(5).',ex:'one, two, THREE, four, five'},
+    {d:'medium',e:'🔢',q:"How do you say « dix » ?",h:'',a:['ten','six','two','eight'],c:0,xp:18,tts:'ten',rule:'Numbers',detail:'six(6), seven(7), eight(8), nine(9), ten(10).',ex:'six, seven, eight, nine, TEN'},
+    {d:'medium',e:'👨‍👩‍👧',q:"How do you say « mère » ?",h:'',a:['mother','sister','father','brother'],c:0,xp:18,tts:'mother',rule:'Family',detail:'mother(mère), father(père), sister(sœur), brother(frère).',ex:'mother 👩 · father 👨 · sister 👧 · brother 👦'},
+    {d:'medium',e:'🍎',q:"Complete: « I ___ an apple. »",h:'Verbe avoir',a:['have','has','am','is'],c:0,xp:20,tts:'I have an apple',rule:'Verbe HAVE',detail:'I/you/we/they → have. He/she/it → has.',ex:'I HAVE · She HAS · We HAVE'},
+    {d:'medium',e:'📅',q:"What day comes after Monday ?",h:'',a:['Tuesday','Sunday','Wednesday','Thursday'],c:0,xp:18,tts:'Tuesday',rule:'Days of the week',detail:'Monday→Tuesday→Wednesday→Thursday→Friday→Saturday→Sunday.',ex:'Monday → TUESDAY'},
+    {d:'medium',e:'🍦',q:"How do you say « glace » ?",h:'Cold & sweet',a:['ice cream','bread','cake','milk'],c:0,xp:18,tts:'ice cream',rule:'Food',detail:'"Glace" = "ice cream".',ex:'ice cream 🍦 · cake 🍰 · bread 🍞'},
+    {d:'hard',e:'🔤',q:"Complete: « She ___ to school every day. »",h:'3rd person',a:['goes','go','going','went'],c:0,xp:30,tts:'She goes to school',rule:'Présent simple -3e pers.',detail:'He/she/it → verbe + -s ou -es.',ex:'I go · she GOES · they go'},
+    {d:'hard',e:'🏫',q:"Which sentence is correct ?",h:'',a:['I am eight years old.','I have eight years.','I is eight.','I eight.'],c:0,xp:32,tts:'I am eight years old',rule:'Donner son âge',detail:'En anglais : I am X years old (pas "I have X years").',ex:'I AM eight years old. ✅'},
+    {d:'expert',e:'💎',q:"What is the past tense of « go » ?",h:'',a:['went','goed','gone','go'],c:0,xp:50,tts:'went',rule:'Prétérit irrégulier',detail:'go → went (irrégulier).',ex:'I go (présent) · Yesterday, I WENT (passé)'},
+    {d:'expert',e:'🏆',q:"Complete: « ___ is your favourite colour? »",h:'',a:['What','Who','Where','When'],c:0,xp:50,tts:'What is your favourite colour',rule:'Mots interrogatifs',detail:'What=quoi/quel · Who=qui · Where=où · When=quand.',ex:'WHAT color? · WHO is she? · WHERE is it?'},
   ],
-  // ===== CONJUGAISON - dedicated mode =====
   cj:[
     // PRÉSENT
-    {d:'easy',e:'✍️',q:'Conjugue « chanter » : Je ___ (présent)',h:'1er groupe, 1re personne',a:['chante','chantes','chantons','chantez'],c:0,xp:15,rule:'Présent - 1er groupe',detail:'Au présent, les verbes en -ER (1er groupe) : je -e, tu -es, il -e, nous -ons, vous -ez, ils -ent.',ex:'je CHANTE · tu chantes · il chante · nous chantons · vous chantez · ils chantent'},
-    {d:'easy',e:'✍️',q:'Conjugue « finir » : Nous ___ (présent)',h:'2ème groupe, 1re pers. du pluriel',a:['finissons','finissez','finissent','finisons'],c:0,xp:15,rule:'Présent - 2ème groupe',detail:'Au présent, les verbes en -IR (2ème groupe) : je finis, tu finis, il finit, nous finissons, vous finissez, ils finissent.',ex:'nous FINISSONS · vous finissez · ils finissent'},
-    {d:'easy',e:'✍️',q:'Conjugue « avoir » : Il ___ (présent)',h:'Verbe irrégulier',a:['a','as','avons','ai'],c:0,xp:18,rule:'Présent - AVOIR',detail:'AVOIR est irrégulier : j\'ai, tu as, il a, nous avons, vous avez, ils ont.',ex:'il A faim · j\'AI soif · nous AVONS chaud'},
-    {d:'easy',e:'✍️',q:'Conjugue « être » : Vous ___ (présent)',h:'Verbe irrégulier',a:['êtes','sont','avez','sommes'],c:0,xp:18,rule:'Présent - ÊTRE',detail:'ÊTRE : je suis, tu es, il est, nous sommes, vous êtes, ils sont.',ex:'vous ÊTES contents · nous SOMMES à l\'école'},
-    {d:'medium',e:'✍️',q:'Conjugue « aller » : Ils ___ (présent)',h:'Verbe très irrégulier',a:['vont','allez','allons','vas'],c:0,xp:22,rule:'Présent - ALLER',detail:'ALLER : je vais, tu vas, il va, nous allons, vous allez, ils vont.',ex:'ils VONT à l\'école · je VAIS au parc · nous ALLONS dormir'},
-    {d:'medium',e:'✍️',q:'Conjugue « manger » : Nous ___ (présent)',h:'Attention à la lettre g !',a:['mangeons','mangons','mangez','mangent'],c:0,xp:22,rule:'Présent - verbes en -GER',detail:'Les verbes en -GER gardent le E devant la terminaison -ONS pour conserver le son [j].',ex:'nous mangEONS · nous nageONS · nous voyagEONS'},
+    {d:'easy',e:'✍️',q:'Conjugue « chanter » : Je ___ (présent)',h:'1er groupe',a:['chante','chantes','chantons','chantez'],c:0,xp:15,rule:'Présent - 1er groupe',detail:'Je -e · tu -es · il -e · nous -ons · vous -ez · ils -ent.',ex:'je CHANTE · tu chantes · nous chantons · ils chantent'},
+    {d:'easy',e:'✍️',q:'Conjugue « finir » : Nous ___ (présent)',h:'2ème groupe',a:['finissons','finissez','finissent','finisons'],c:0,xp:15,rule:'Présent - 2ème groupe',detail:'Je finis · tu finis · il finit · nous finissons · vous finissez · ils finissent.',ex:'nous FINISSONS · vous finissez'},
+    {d:'easy',e:'✍️',q:'Conjugue « avoir » : Il ___ (présent)',h:'Irrégulier',a:['a','as','avons','ai'],c:0,xp:18,rule:'Présent - AVOIR',detail:'j\'ai · tu as · il a · nous avons · vous avez · ils ont.',ex:'il A faim · j\'AI soif · nous AVONS chaud'},
+    {d:'easy',e:'✍️',q:'Conjugue « être » : Vous ___ (présent)',h:'Irrégulier',a:['êtes','sont','avez','sommes'],c:0,xp:18,rule:'Présent - ÊTRE',detail:'je suis · tu es · il est · nous sommes · vous êtes · ils sont.',ex:'vous ÊTES contents · ils SONT partis'},
+    {d:'medium',e:'✍️',q:'Conjugue « aller » : Ils ___ (présent)',h:'Très irrégulier',a:['vont','allez','allons','vas'],c:0,xp:22,rule:'Présent - ALLER',detail:'je vais · tu vas · il va · nous allons · vous allez · ils vont.',ex:'ils VONT à l\'école · je VAIS au parc'},
+    {d:'medium',e:'✍️',q:'Conjugue « manger » : Nous ___ (présent)',h:'Attention au g !',a:['mangeons','mangons','mangez','mangent'],c:0,xp:22,rule:'Présent - verbes en -GER',detail:'Garder le E devant -ONS pour conserver le son [j].',ex:'nous mangEONS · nous nageONS · nous voyagEONS'},
     // PASSÉ COMPOSÉ
-    {d:'medium',e:'⏮️',q:'Conjugue « chanter » au passé composé : J\'___ ',h:'Auxiliaire avoir + participe passé',a:['ai chanté','ai chante','ais chanté','ai chantée'],c:0,xp:25,rule:'Passé composé',detail:'Passé composé = auxiliaire AVOIR ou ÊTRE + participe passé. Les verbes en -ER font leur participe en -É.',ex:'J\'AI CHANTÉ · Tu as dansé · Il a joué · Nous avons mangé'},
-    {d:'medium',e:'⏮️',q:'Quel est le participe passé de « partir » ?',h:'Conjugué avec ÊTRE',a:['parti','parte','partis','parté'],c:0,xp:25,rule:'Participe passé avec ÊTRE',detail:'Avec ÊTRE, le participe passé s\'accorde avec le sujet. Partir → parti(e)(s).',ex:'Il est PARTI · Elle est PARTIE · Ils sont PARTIS · Elles sont PARTIES'},
-    {d:'hard',e:'⏮️',q:'Conjugue « finir » au passé composé : Nous ___',h:'',a:['avons fini','avons finis','sommes fini','avons finit'],c:0,xp:30,rule:'Passé composé - 2ème groupe',detail:'Finir → participe passé : fini (sans s). Avec AVOIR, le participe ne s\'accorde pas avec le sujet.',ex:'Nous AVONS FINI nos devoirs. · Ils ont fini le repas.'},
-    {d:'hard',e:'⏮️',q:'Quelle phrase est correcte au passé composé ?',h:'',a:['Elle est allée au cinéma.','Elle a allée au cinéma.','Elle est allé au cinéma.','Elle a aller au cinéma.'],c:0,xp:35,rule:'Accord avec ÊTRE',detail:'Aller se conjugue avec ÊTRE. Le participe passé s\'accorde : allé(e). Elle → féminin → allée.',ex:'Il est ALLÉ · Elle est ALLÉE · Ils sont ALLÉS · Elles sont ALLÉES'},
+    {d:'medium',e:'⏮️',q:'Passé composé de « chanter » : J\'___ ',h:'Auxiliaire avoir + p.p.',a:['ai chanté','ai chante','ais chanté','ai chantée'],c:0,xp:25,rule:'Passé composé',detail:'= auxiliaire AVOIR ou ÊTRE + participe passé. Verbes -ER → participe en -É.',ex:'J\'AI CHANTÉ · Tu as dansé · Nous avons joué'},
+    {d:'medium',e:'⏮️',q:'Quel est le participe passé de « partir » ?',h:'Avec ÊTRE',a:['parti','parte','partis','parté'],c:0,xp:25,rule:'Participe passé avec ÊTRE',detail:'Avec ÊTRE, le p.p. s\'accorde avec le sujet.',ex:'Il est PARTI · Elle est PARTIE · Ils sont PARTIS'},
+    {d:'hard',e:'⏮️',q:'Passé composé de « finir » : Nous ___',h:'',a:['avons fini','avons finis','sommes fini','avons finit'],c:0,xp:30,rule:'Passé composé - 2ème groupe',detail:'Finir → participe passé : fini (sans s avec avoir).',ex:'Nous AVONS FINI nos devoirs.'},
+    {d:'hard',e:'⏮️',q:'Quelle phrase est correcte au passé composé ?',h:'',a:['Elle est allée au cinéma.','Elle a allée.','Elle est allé.','Elle a aller.'],c:0,xp:35,rule:'Accord avec ÊTRE',detail:'Aller → avec ÊTRE → accord : allé/allée/allés/allées.',ex:'Elle est ALLÉE ✅ · Il est ALLÉ ✅'},
     // IMPARFAIT
-    {d:'medium',e:'🔄',q:'Conjugue « jouer » à l\'imparfait : Tu ___',h:'Base : nous jouons → jouai-',a:['jouais','jouait','jouiez','jouons'],c:0,xp:25,rule:'L\'imparfait',detail:'L\'imparfait se forme sur le radical de "nous" au présent + terminaisons : -ais, -ais, -ait, -ions, -iez, -aient.',ex:'tu JOUAIS souvent · il jouait bien · nous jouions ensemble'},
-    {d:'hard',e:'🔄',q:'Conjugue « être » à l\'imparfait : Nous ___',h:'Radical spécial pour être',a:['étions','étais','était','sommes'],c:0,xp:32,rule:'Imparfait de ÊTRE',detail:'ÊTRE à l\'imparfait : j\'étais, tu étais, il était, nous étions, vous étiez, ils étaient.',ex:'Nous ÉTIONS heureux · Vous étiez fatigués · Ils étaient contents'},
-    {d:'hard',e:'🔄',q:'Dans quelle phrase l\'imparfait est-il bien employé ?',h:'Action répétée ou durée dans le passé',a:['Chaque soir, il lisait un livre.','Hier, il a lu un livre.','Il va lire un livre.','Il lit un livre.'],c:0,xp:35,rule:'Emploi de l\'imparfait',detail:'L\'imparfait décrit des actions habituelles ou répétées dans le passé ("chaque soir", "souvent", "autrefois").',ex:'Chaque soir, il LISAIT (habitude) · Hier, il a lu (action unique = passé composé)'},
+    {d:'medium',e:'🔄',q:'Conjugue « jouer » à l\'imparfait : Tu ___',h:'Base : nous jouons',a:['jouais','jouait','jouiez','jouons'],c:0,xp:25,rule:'L\'imparfait',detail:'Radical de "nous" au présent + -ais/-ais/-ait/-ions/-iez/-aient.',ex:'tu JOUAIS souvent · il jouait bien'},
+    {d:'hard',e:'🔄',q:'Conjugue « être » à l\'imparfait : Nous ___',h:'Radical spécial',a:['étions','étais','était','sommes'],c:0,xp:32,rule:'Imparfait de ÊTRE',detail:'j\'étais · tu étais · il était · nous étions · vous étiez · ils étaient.',ex:'Nous ÉTIONS heureux · ils ÉTAIENT contents'},
+    {d:'hard',e:'🔄',q:'Quelle phrase emploie bien l\'imparfait ?',h:'Action répétée dans le passé',a:['Chaque soir, il lisait.','Hier, il a lu.','Il va lire.','Il lit.'],c:0,xp:35,rule:'Emploi de l\'imparfait',detail:'Imparfait = actions habituelles ou répétées dans le passé.',ex:'Chaque soir, il LISAIT (habitude) ✅'},
     // FUTUR
-    {d:'medium',e:'🔮',q:'Conjugue « chanter » au futur : Je ___',h:'Infinitif + terminaison',a:['chanterai','chanterais','chantais','vais chanter'],c:0,xp:25,rule:'Le futur simple',detail:'Futur simple = infinitif + terminaisons : -ai, -as, -a, -ons, -ez, -ont.',ex:'je chanteRAI · tu chanteras · il chantera · nous chanterons'},
-    {d:'hard',e:'🔮',q:'Conjugue « aller » au futur : Vous ___',h:'Radical irrégulier : ir-',a:['irez','allerez','alliez','irez'],c:0,xp:32,rule:'Futur - verbes irréguliers',detail:'Certains verbes ont un radical irrégulier au futur : aller → ir-, être → ser-, avoir → aur-, faire → fer-.',ex:'vous IREZ · ils iront · tu iras · Vous SEREZ contents · Nous AURONS le temps'},
-    {d:'expert',e:'🔮',q:'Quelle phrase utilise le futur pour exprimer une certitude ?',h:'',a:['Demain, il fera beau.','Il faisait beau hier.','Il fait beau aujourd\'hui.','Il ferait beau si...'],c:0,xp:50,rule:'Futur de certitude',detail:'Le futur simple exprime une action certaine dans l\'avenir. Le conditionnel (-rait) exprime une hypothèse.',ex:'Demain, il FERA beau. (futur, certain) · Il ferait beau si... (conditionnel, hypothèse)'},
+    {d:'medium',e:'🔮',q:'Conjugue « chanter » au futur : Je ___',h:'Infinitif + terminaison',a:['chanterai','chanterais','chantais','vais chanter'],c:0,xp:25,rule:'Le futur simple',detail:'Infinitif + -ai/-as/-a/-ons/-ez/-ont.',ex:'je chanteRAI · tu chanteras · il chantera'},
+    {d:'hard',e:'🔮',q:'Conjugue « aller » au futur : Vous ___',h:'Radical : ir-',a:['irez','allerez','alliez','iriez'],c:0,xp:32,rule:'Futur - irréguliers',detail:'Aller→ir- · Être→ser- · Avoir→aur- · Faire→fer-.',ex:'vous IREZ · ils iront · tu iras'},
+    {d:'expert',e:'🔮',q:'Conjugue « faire » au futur : Ils ___',h:'Radical irrégulier',a:['feront','fairont','feront','faisaient'],c:0,xp:50,rule:'Futur - FAIRE',detail:'Faire → radical fer- au futur.',ex:'ils FERONT · je ferai · tu feras · nous ferons'},
   ],
 };
 
-// ===== BOSS QUESTIONS - hardest mix =====
-function getBossQuestions(){
-  const all=[...QDB.fr,...QDB.ma,...QDB.en,...QDB.cj];
-  const hard=all.filter(q=>q.d==='hard'||q.d==='expert');
-  return shuf(hard).slice(0,8);
+// LESSON CONTENT
+const TENSE_DATA={
+  present:{
+    title:'Le Présent',
+    rule:'Le présent exprime ce qui se passe maintenant ou une action habituelle.',
+    tables:[
+      {verb:'chanter (1er groupe)',rows:[['je','chante'],['tu','chantes'],['il/elle','chante'],['nous','chantons'],['vous','chantez'],['ils/elles','chantent']]},
+      {verb:'finir (2ème groupe)',rows:[['je','finis'],['tu','finis'],['il/elle','finit'],['nous','finissons'],['vous','finissez'],['ils/elles','finissent']]},
+      {verb:'être (irrégulier)',rows:[['je','suis'],['tu','es'],['il/elle','est'],['nous','sommes'],['vous','êtes'],['ils/elles','sont']]},
+      {verb:'avoir (irrégulier)',rows:[['je','ai'],['tu','as'],['il/elle','a'],['nous','avons'],['vous','avez'],['ils/elles','ont']]},
+      {verb:'aller (irrégulier)',rows:[['je','vais'],['tu','vas'],['il/elle','va'],['nous','allons'],['vous','allez'],['ils/elles','vont']]},
+    ],
+    tip:'💡 Les verbes du 1er groupe (-ER) suivent tous le même modèle.',
+    ex:'Je CHANTE une chanson. · Nous SOMMES à l\'école.',
+  },
+  passe:{
+    title:'Le Passé Composé',
+    rule:'Le passé composé exprime une action terminée dans le passé.',
+    tables:[
+      {verb:'chanter → chanté (avec AVOIR)',rows:[['j\'','ai chanté'],['tu','as chanté'],['il/elle','a chanté'],['nous','avons chanté'],['vous','avez chanté'],['ils/elles','ont chanté']]},
+      {verb:'aller → allé(e) (avec ÊTRE)',rows:[['je','suis allé(e)'],['tu','es allé(e)'],['il/elle','est allé/allée'],['nous','sommes allé(e)s'],['vous','êtes allé(e)s'],['ils/elles','sont allés/allées']]},
+    ],
+    tip:'💡 La majorité des verbes se conjuguent avec AVOIR. Les verbes de mouvement (aller, partir, venir…) et les verbes pronominaux se conjuguent avec ÊTRE.',
+    ex:'Hier, j\'AI CHANTÉ. · Elle EST ALLÉE à l\'école.',
+  },
+  imparfait:{
+    title:'L\'Imparfait',
+    rule:'L\'imparfait décrit une action habituelle ou qui durait dans le passé.',
+    tables:[
+      {verb:'chanter → imparfait',rows:[['je','chantais'],['tu','chantais'],['il/elle','chantait'],['nous','chantions'],['vous','chantiez'],['ils/elles','chantaient']]},
+      {verb:'être → imparfait',rows:[['j\'','étais'],['tu','étais'],['il/elle','était'],['nous','étions'],['vous','étiez'],['ils/elles','étaient']]},
+    ],
+    tip:'💡 On prend le radical de NOUS au présent et on ajoute : -ais, -ais, -ait, -ions, -iez, -aient.',
+    ex:'Chaque soir, il CHANTAIT. · Nous ÉTIONS heureux.',
+  },
+  futur:{
+    title:'Le Futur Simple',
+    rule:'Le futur simple exprime une action qui aura lieu dans le futur.',
+    tables:[
+      {verb:'chanter → futur',rows:[['je','chanterai'],['tu','chanteras'],['il/elle','chantera'],['nous','chanterons'],['vous','chanterez'],['ils/elles','chanteront']]},
+      {verb:'Irréguliers importants',rows:[['être','je serai'],['avoir','j\'aurai'],['aller','j\'irai'],['faire','je ferai'],['venir','je viendrai']]},
+    ],
+    tip:'💡 Pour les verbes réguliers : infinitif + terminaisons -ai, -as, -a, -ons, -ez, -ont.',
+    ex:'Demain, je CHANTERAI. · Il SERA content. · Nous IRONS au parc.',
+  },
+};
+
+function showTense(key,btn){
+  document.querySelectorAll('.tense-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const d=TENSE_DATA[key];
+  document.getElementById('tense-content').innerHTML=`
+    <div class="lesson-rule-box">
+      <strong>${d.title}</strong><br>${d.rule}
+      <div class="lesson-ex">${d.ex}</div>
+    </div>
+    ${d.tables.map(t=>`
+      <div style="margin-top:.65rem">
+        <div style="font-size:var(--fxs);font-weight:800;color:var(--cj2);margin-bottom:.3rem">${t.verb}</div>
+        <table class="conj-table"><tbody>
+          ${t.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
+        </tbody></table>
+      </div>
+    `).join('')}
+    <div style="margin-top:.65rem;font-size:var(--fxs);color:var(--en2);font-weight:700">${d.tip}</div>
+  `;
 }
 
-// ===== STATE =====
-let S={xp:0,coins:0,streak:0,maxS:0,tot:0,perf:0,hOk:0,eOk:0,bossWin:0,maxCombo:0,done:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0},corr:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0},badges:[],mis:{ex:0,s3:0,cj:0},hist:[],autoDiff:'easy',rates:[],pin:PIN0,combo:0};
+function showLesson(){
+  show('s-lesson');
+  // init with present
+  showTense('present',document.querySelector('.tense-tab'));
+  S.mis.lc=1;save();
+  // update lesson progress bar
+  document.getElementById('pg-lc').style.width='100%';
+  document.getElementById('lb-lc').textContent='1 leçon';
+}
+
+// BOSS pool
+function getBossQ(){
+  const all=[...QDB.fr,...QDB.ma,...QDB.en,...QDB.cj];
+  return shuf(all.filter(q=>q.d==='hard'||q.d==='expert')).slice(0,8);
+}
+
+// ===== STATE (preserve from v2 saves too) =====
+let S={xp:0,coins:0,streak:0,maxS:0,tot:0,perf:0,hOk:0,eOk:0,bossWin:0,maxCombo:0,done:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0,lc:0},corr:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0},badges:[],mis:{ex:0,s3:0,lc:0},hist:[],autoDiff:'easy',rates:[],pin:PIN0,combo:0};
 let QS={sub:'',qs:[],idx:0,ok:0,t0:0,tmr:null,secs:30,ans:false,last:false,diff:'easy',combo:0,maxCombo:0};
 let pinIn='';
 
@@ -531,15 +811,22 @@ async function save(){
   const d=JSON.stringify(S);
   let cloud=false;
   try{if(window.storage){await window.storage.set(SK,d);cloud=true;}}catch(e){}
+  // Also try old key to migrate
   try{localStorage.setItem(SK,d);}catch(e){}
   dot(cloud?'ok':'local');
 }
 async function load(){
+  // Try new key
   try{const d=localStorage.getItem(SK);if(d)Object.assign(S,JSON.parse(d));}catch(e){}
+  // Try old v2 key to migrate
+  try{const old=localStorage.getItem('nce2v2_bap');if(old){const o=JSON.parse(old);if(o.xp>S.xp)Object.assign(S,o);}}catch(e){}
   try{
     if(window.storage){
       const r=await window.storage.get(SK);
-      if(r&&r.value){Object.assign(S,JSON.parse(r.value));try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}}
+      if(r&&r.value){const c=JSON.parse(r.value);if(c.xp>=S.xp)Object.assign(S,c);try{localStorage.setItem(SK,JSON.stringify(S));}catch(e){}}
+      // migrate old cloud key
+      const old=await window.storage.get('nce2v2_bap').catch(()=>null);
+      if(old&&old.value){const o=JSON.parse(old.value);if(o.xp>S.xp){Object.assign(S,o);}}
     }
   }catch(e){}
   S.pin=S.pin||PIN0;
@@ -581,62 +868,69 @@ function autoAdj(){
   if(avg>=0.85&&i<3)S.autoDiff=ord[i+1];
   else if(avg<0.5&&i>0)S.autoDiff=ord[i-1];
 }
-function upDiffBadge(){
-  const d=getDiff(),cfg=DIFF[d],b=document.getElementById('dbadge');
-  b.textContent='🤖 Auto · '+cfg.lbl;b.className='dbadge '+cfg.cls;
-}
 
 // ===== HOME =====
 function upHome(){
   document.getElementById('cv').textContent=S.coins;
-  const lv=getLv(),li=getLi();
-  document.getElementById('plv').textContent=`${lv.e} Niveau ${li+1} – ${lv.name}`;
-  const pct=Math.min(100,((S.xp-lv.min)/(lv.max-lv.min))*100);
+  const lv=getLevelFromXP(S.xp);
+  const poke=getPokeForLevel(lv);
+  const nextPoke=lv<100?getPokeForLevel(lv+1):null;
+  // XP bar
+  const xpCurrent=lv<100?XP_TABLE[lv-1]:XP_TABLE[98];
+  const xpNext=lv<100?XP_TABLE[lv]:XP_TABLE[99]+1000;
+  const xpIn=S.xp-xpCurrent, xpNeed=xpNext-xpCurrent;
+  const pct=lv>=100?100:Math.min(100,(xpIn/xpNeed)*100);
   document.getElementById('xpbar').style.width=pct+'%';
-  document.getElementById('xplbl').textContent=`${S.xp} / ${lv.max} XP`;
+  document.getElementById('xplbl').textContent=`${S.xp.toLocaleString('fr')} XP`;
+  document.getElementById('level-num').textContent=`Niv. ${lv} / 100`;
+  document.getElementById('xp-to-next').textContent=lv>=100?'Niveau maximum atteint 🏆':`${(xpNeed-xpIn).toLocaleString('fr')} XP vers niveau ${lv+1}`;
+  // Level badge
+  document.getElementById('plv').textContent=`${poke.emoji} ${poke.name} · Niv.${lv}`;
+  // Pokemon strip
+  document.getElementById('ps-ico').textContent=poke.emoji;
+  document.getElementById('ps-name').textContent=poke.name;
+  document.getElementById('ps-hp').textContent=`❤️ ${poke.hp} PV · Type : ${poke.type}`;
+  document.getElementById('ps-next').textContent=nextPoke?`→ ${nextPoke.name} à Niv.${lv+1}`:'👑 MAX';
+  // Diff badge
+  const d=getDiff(),cfg=DIFF[d],b=document.getElementById('dbadge');
+  b.textContent='🤖 Auto · '+cfg.lbl;b.className='diff-badge '+cfg.cls;
+  // Combo
+  const ch=document.getElementById('combo-home');
+  if(S.combo>=2){ch.style.display='block';document.getElementById('combo-home-n').textContent=S.combo;}
+  else ch.style.display='none';
+  // Streak
   document.getElementById('sv').textContent=S.streak;
   document.getElementById('stxt').textContent=S.streak>=1?`🔥 Série de ${S.streak} bonne${S.streak>1?'s':''} réponse${S.streak>1?'s':''}!`:'Continue, tu peux le faire !';
-  // Combo display
-  const comboBar=document.getElementById('combo-bar');
-  if(S.combo>=2){comboBar.style.display='flex';document.getElementById('combo-txt').textContent=`Combo ×${S.combo}`;}
-  else comboBar.style.display='none';
+  // Subject progress
   const MAX=20;
   ['fr','ma','en','cj'].forEach(sub=>{
     const n=S.done[sub]||0,p=Math.min(100,(n/MAX)*100);
     document.getElementById('pg-'+sub).style.width=p+'%';
     document.getElementById('lb-'+sub).textContent=`${n} ex.`;
   });
-  upDiffBadge();upBadges();upMis();
+  document.getElementById('pg-lc').style.width=(S.mis.lc?100:0)+'%';
+  document.getElementById('lb-lc').textContent=S.mis.lc?'1 leçon':'0 leçon';
+  upBadges();upMis();
 }
-function getLv(){for(let i=LEVELS.length-1;i>=0;i--)if(S.xp>=LEVELS[i].min)return LEVELS[i];return LEVELS[0];}
-function getLi(){for(let i=LEVELS.length-1;i>=0;i--)if(S.xp>=LEVELS[i].min)return i;return 0;}
+
 function upBadges(){
   const w=document.getElementById('bdgwrap');w.innerHTML='';
   BADGES.forEach(b=>{const ok=S.badges.includes(b.id);const el=document.createElement('div');el.className='bdg '+(ok?'ok':'no');el.textContent=b.name;w.appendChild(el);});
 }
 function upMis(){
-  const m=S.mis,ex=Math.min(5,m.ex||0),st=Math.min(3,m.s3||0),cj=Math.min(1,m.cj||0);
+  const m=S.mis,ex=Math.min(5,m.ex||0),st=Math.min(3,m.s3||0),lc=Math.min(1,m.lc||0);
   document.getElementById('m1p').textContent=`${ex} / 5`;document.getElementById('m1b').style.width=(ex/5*100)+'%';
   document.getElementById('m2p').textContent=`${st} / 3`;document.getElementById('m2b').style.width=(st/3*100)+'%';
-  document.getElementById('m3p').textContent=`${cj} / 1`;document.getElementById('m3b').style.width=(cj*100)+'%';
+  document.getElementById('m3p').textContent=`${lc} / 1`;document.getElementById('m3b').style.width=(lc*100)+'%';
 }
 
 // ===== QUIZ =====
 function startSub(sub){
   const diff=getDiff(),cfg=DIFF[diff];
   let pool;
-  if(sub==='rv'){
-    const all=[...QDB.fr,...QDB.ma,...QDB.en,...QDB.cj];
-    pool=shuf(all.filter(q=>q.d===diff));
-    if(pool.length<4)pool=shuf(all);
-    pool=pool.slice(0,8);
-  } else if(sub==='bo'){
-    pool=getBossQuestions();
-  } else {
-    pool=shuf(QDB[sub].filter(q=>q.d===diff));
-    if(pool.length<3)pool=shuf(QDB[sub]);
-    pool=pool.slice(0,6);
-  }
+  if(sub==='rv'){pool=shuf([...QDB.fr,...QDB.ma,...QDB.en,...QDB.cj]).filter(q=>q.d===diff);if(pool.length<4)pool=shuf([...QDB.fr,...QDB.ma,...QDB.en,...QDB.cj]);pool=pool.slice(0,8);}
+  else if(sub==='bo'){pool=getBossQ();}
+  else{pool=shuf(QDB[sub].filter(q=>q.d===diff));if(pool.length<3)pool=shuf(QDB[sub]);pool=pool.slice(0,6);}
   QS={sub,qs:pool,idx:0,ok:0,t0:Date.now(),tmr:null,secs:cfg.t,ans:false,last:false,diff,combo:0,maxCombo:0};
   document.getElementById('qlbl').textContent=LBLS[sub];
   show('s-quiz');renderQ();
@@ -651,12 +945,9 @@ function renderQ(){
   document.getElementById('qemj').textContent=q.e;
   document.getElementById('qtx').textContent=q.q;
   document.getElementById('qhi').textContent=(cfg.hint&&q.h)?`💡 ${q.h}`:'';
-  // Combo indicator
-  const ci=document.getElementById('combo-indicator');
-  if(QS.combo>=2){ci.style.display='block';document.getElementById('combo-mult').textContent=QS.combo;}
-  else ci.style.display='none';
-  const ab=document.getElementById('audiobtn');
-  QS.sub==='en'&&q.tts?ab.classList.remove('hide'):ab.classList.add('hide');
+  const ci=document.getElementById('combo-ind');
+  if(QS.combo>=2){ci.style.display='block';document.getElementById('combo-n').textContent=QS.combo;}else ci.style.display='none';
+  const ab=document.getElementById('audiobtn');QS.sub==='en'&&q.tts?ab.classList.remove('hide'):ab.classList.add('hide');
   QS.ans=false;
   const ct=q.a[q.c],sh=shuf([...q.a]);
   const grid=document.getElementById('agrid');grid.innerHTML='';
@@ -666,10 +957,7 @@ function renderQ(){
     grid.appendChild(btn);
   });
   clearInterval(QS.tmr);QS.secs=cfg.t;upTimer();
-  QS.tmr=setInterval(()=>{
-    QS.secs--;upTimer();
-    if(QS.secs<=0){clearInterval(QS.tmr);if(!QS.ans){QS.ans=true;hlOk(grid,ct);QS.combo=0;showFB(false,q,0);S.streak=0;}}
-  },1000);
+  QS.tmr=setInterval(()=>{QS.secs--;upTimer();if(QS.secs<=0){clearInterval(QS.tmr);if(!QS.ans){QS.ans=true;hlOk(grid,ct);QS.combo=0;showFB(false,q,0);S.streak=0;}}},1000);
 }
 function upTimer(){const el=document.getElementById('tbdg');el.textContent=QS.secs;el.className='tbdg'+(QS.secs<=6?' urg':'');}
 
@@ -678,12 +966,9 @@ function pick(btn,ok,q,grid,ct){
   Array.from(grid.querySelectorAll('.ans')).forEach(b=>b.disabled=true);
   if(ok){
     btn.classList.add('ok');QS.ok++;S.streak++;if(S.streak>S.maxS)S.maxS=S.streak;
-    QS.combo++;if(QS.combo>QS.maxCombo)QS.maxCombo=QS.combo;
-    if(QS.combo>S.maxCombo)S.maxCombo=QS.combo;
-    ptcl(btn);
-    if(QS.sub==='en'&&q.tts)tts(q.tts);
+    QS.combo++;if(QS.combo>QS.maxCombo)QS.maxCombo=QS.combo;if(QS.combo>S.maxCombo)S.maxCombo=QS.combo;
+    ptcl(btn);if(QS.sub==='en'&&q.tts)tts(q.tts);
     if(QS.diff==='hard')S.hOk=(S.hOk||0)+1;
-    // Show combo popup
     if(QS.combo>=2)showComboPopup(QS.combo);
   } else {
     btn.classList.add('er');hlOk(grid,ct);S.streak=0;QS.combo=0;
@@ -693,30 +978,27 @@ function pick(btn,ok,q,grid,ct){
   S.mis.ex=Math.min(5,(S.mis.ex||0)+1);
   if(S.streak>=3)S.mis.s3=Math.min(3,S.streak);
   if(QS.sub==='cj')S.mis.cj=1;
-  const comboMul=ok?Math.max(1,QS.combo):1;
-  showFB(ok,q,ok?Math.round(q.xp*DIFF[QS.diff].mul*comboMul):0);
+  const mul=ok?Math.max(1,QS.combo):1;
+  showFB(ok,q,ok?Math.round(q.xp*DIFF[QS.diff].mul*mul):0);
 }
 function hlOk(grid,ct){Array.from(grid.querySelectorAll('.ans')).forEach(b=>{if(b.textContent===ct)b.classList.add('ok');});}
 
 function showComboPopup(n){
-  const d=document.createElement('div');
-  d.className='combo-float';
+  const d=document.getElementById('combo-float');
   d.textContent=`⚡ Combo ×${n} !`;
-  document.body.appendChild(d);
-  setTimeout(()=>d.remove(),1200);
+  d.className='combo-float show';
+  setTimeout(()=>{d.className='combo-float';},1100);
 }
 
 function showFB(ok,q,xp){
   document.getElementById('fbico').textContent=ok?'🎉':'😅';
   let title=ok?GOODS[Math.floor(Math.random()*GOODS.length)]:'Presque !';
-  if(ok&&QS.combo>=3)title='🔥 Combo ×'+QS.combo+' !';
+  if(ok&&QS.combo>=3)title=`🔥 Combo ×${QS.combo} !`;
   document.getElementById('fbtit').textContent=title;
   document.getElementById('fbxp').textContent=ok?`+${xp} XP 🌟`:'On continue !';
-  // Enriched explanation
-  document.getElementById('fbex-rule').textContent='📌 '+(q.rule||'Explication');
-  document.getElementById('fbex-detail').textContent=q.detail||q.ex||'';
-  document.getElementById('fbex-example').textContent=q.ex&&q.detail?'✏️ '+q.ex:'';
-  document.getElementById('fbdr').textContent='';
+  document.getElementById('fbex-rule').textContent='📌 '+(q.rule||'La règle');
+  document.getElementById('fbex-detail').textContent=q.detail||'';
+  document.getElementById('fbex-example').textContent=q.ex?'✏️ '+q.ex:'';
   const pop=document.getElementById('fbpop');pop.className='fbpop '+(ok?'ok':'er');
   document.getElementById('fbov').style.display='flex';
   requestAnimationFrame(()=>requestAnimationFrame(()=>pop.classList.add('on')));
@@ -725,13 +1007,14 @@ function hideFB(){const p=document.getElementById('fbpop');p.classList.remove('o
 
 function nextQ(){
   hideFB();
-  const q=QS.qs[QS.idx],pli=getLi();
-  const comboMul=QS.last?Math.max(1,QS.combo):1;
+  const q=QS.qs[QS.idx],prevLv=getLevelFromXP(S.xp);
+  const mul=QS.last?Math.max(1,QS.combo):1;
   if(QS.last){
-    const xp=Math.round(q.xp*DIFF[QS.diff].mul*comboMul);
+    const xp=Math.round(q.xp*DIFF[QS.diff].mul*mul);
     S.xp+=xp;S.coins+=Math.max(1,Math.floor(xp/5));
     S.tot++;S.done[QS.sub]=(S.done[QS.sub]||0)+1;S.corr[QS.sub]=(S.corr[QS.sub]||0)+1;
-    if(getLi()>pli)setTimeout(()=>showLU(getLi()),400);
+    const newLv=getLevelFromXP(S.xp);
+    if(newLv>prevLv)setTimeout(()=>showPokeUnlock(newLv),400);
   } else {
     S.tot++;S.done[QS.sub]=(S.done[QS.sub]||0)+1;
   }
@@ -749,82 +1032,127 @@ function showRes(){
   if(ok===tot){tr='🏆';ti='Parfait ! Tu es incroyable !';S.perf++;}
   else if(rate>=.8){tr='🥇';ti='Excellent travail !';}
   else if(rate>=.6){tr='🥈';ti='Très bien !';}
-  if(QS.sub==='bo'&&ok===tot){S.bossWin=(S.bossWin||0)+1;ti='👹 Boss vaincu ! Tu es un héros !';}
+  if(QS.sub==='bo'&&ok===tot){S.bossWin=(S.bossWin||0)+1;ti='👹 Boss vaincu !';}
   document.getElementById('rtr').textContent=tr;document.getElementById('rti').textContent=ti;
   document.getElementById('rsc').textContent=`${ok}/${tot}`;
   document.getElementById('st-xp').textContent=`+${xpE}`;document.getElementById('st-co').textContent=`+${coE}`;
   document.getElementById('st-ti').textContent=el>=60?`${Math.floor(el/60)}m${el%60}s`:`${el}s`;
   document.getElementById('st-cb').textContent=`×${QS.maxCombo||1}`;
   S.rates=S.rates||[];S.rates.push(rate);if(S.rates.length>5)S.rates.shift();
-  const prev=S.autoDiff||'easy';
   if(QS.sub!=='bo')autoAdj();
-  const nw=S.autoDiff||'easy';
+  const nw=S.autoDiff||'easy',prev=S.rates.length>1?S.autoDiff:'easy';
   const dr=document.getElementById('dres');
-  if(nw!==prev){const up=['easy','medium','hard','expert'].indexOf(nw)>['easy','medium','hard','expert'].indexOf(prev);dr.className='dres '+(up?'up':'down');dr.textContent=up?`⬆️ Niveau augmenté → ${DIFF[nw].lbl}`:`⬇️ Niveau ajusté → ${DIFF[nw].lbl}`;}
-  else{dr.className='dres same';dr.textContent=`✅ Niveau maintenu : ${DIFF[nw].lbl}`;}
+  dr.className='dres same';dr.textContent=`✅ Niveau : ${DIFF[nw].lbl}`;
   S.hist=S.hist||[];
   S.hist.unshift({date:new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}),sub:QS.sub,score:ok,total:tot,xp:xpE,diff:QS.diff,combo:QS.maxCombo});
-  if(S.hist.length>25)S.hist.pop();
+  if(S.hist.length>30)S.hist.pop();
   const nb=chkBadges(true);const box=document.getElementById('nbbox');
   if(nb){document.getElementById('nbnm').textContent=nb.name;box.classList.add('on');}else box.classList.remove('on');
   save();show('s-res');
 }
 function chkBadges(ret=false){let got=null;BADGES.forEach(b=>{if(!S.badges.includes(b.id)&&b.fn(S)){S.badges.push(b.id);if(ret&&!got)got=b;}});return got;}
 
-// ===== LEVEL UP =====
-function showLU(i){const lv=LEVELS[i];document.getElementById('luti').textContent=`Niveau ${i+1} débloqué ! 🎉`;document.getElementById('lusu').textContent=`Baptiste est maintenant ${lv.name} ${lv.e} !`;document.getElementById('luov').classList.add('on');}
+// ===== POKEMON UNLOCK =====
+function showPokeUnlock(newLv){
+  const poke=getPokeForLevel(newLv);
+  document.getElementById('pu-title').textContent=`🎉 Niveau ${newLv} atteint !`;
+  document.getElementById('pu-sub').textContent=`Tu as gagné un nouveau Pokémon !`;
+  const container=document.getElementById('poke-card-container');
+  container.innerHTML='';
+  container.appendChild(buildPokeCard(poke));
+  document.getElementById('poke-overlay').classList.add('on');
+}
+function closePoke(){document.getElementById('poke-overlay').classList.remove('on');}
+
+function buildPokeCard(poke){
+  const card=document.createElement('div');
+  card.className='poke-card';
+  card.style.cssText=`border-color:${poke.color};background:${poke.bg}`;
+  const hpPct=Math.min(100,poke.hp/130);// visual only
+  const hpColor=poke.hp>5000?'#f87171':poke.hp>1000?'#fbbf24':'#4ade80';
+  card.innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div style="font-family:'Fredoka One',cursive;font-size:var(--flg);color:${poke.color}">${poke.name}</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:var(--fmd);color:var(--mut)">Niv.${poke.lv}</div>
+    </div>
+    <div style="text-align:center;font-size:clamp(3.5rem,15vw,5rem);line-height:1;padding:.3rem 0">${poke.emoji}</div>
+    <div class="poke-type-badge" style="color:${poke.color};width:fit-content;margin:0 auto">${poke.type}</div>
+    <div>
+      <div style="display:flex;justify-content:space-between;font-size:var(--fxs);font-weight:800;margin-bottom:.2rem">
+        <span style="color:var(--mut)">PV</span>
+        <span style="color:${hpColor}">${poke.hp.toLocaleString('fr')}</span>
+      </div>
+      <div class="poke-hp-bar"><div class="poke-hp-fill" style="width:${Math.min(100,poke.hp/130)}%;background:${hpColor}"></div></div>
+    </div>
+    <div class="poke-stats">
+      <div class="poke-stat"><span>ATQ</span>${poke.atk}</div>
+      <div class="poke-stat"><span>DEF</span>${poke.def}</div>
+    </div>
+  `;
+  return card;
+}
+
 function closeLU(){document.getElementById('luov').classList.remove('on');}
 
 // ===== PARENT =====
 function showPar(){
-  const SN={fr:'Français',ma:'Maths',en:'Anglais',cj:'Conjugaison',rv:'Révisions',bo:'Boss'};
+  const SN={fr:'Français',ma:'Maths',en:'Anglais',cj:'Conjugaison',rv:'Révisions',bo:'Boss',lc:'Leçon'};
   const SC={fr:'var(--fr2)',ma:'var(--ma2)',en:'var(--en2)',cj:'var(--cj2)',rv:'var(--pu2)',bo:'var(--gold)'};
   const tD=Object.values(S.done).reduce((a,b)=>a+b,0);
   const tO=Object.values(S.corr).reduce((a,b)=>a+b,0);
   const acc=tD>0?Math.round(tO/tD*100):0;
-  const lv=getLv(),li=getLi();
+  const lv=getLevelFromXP(S.xp);
+  const poke=getPokeForLevel(lv);
   document.getElementById('pgrid').innerHTML=`
-    <div class="pc"><div class="pclb">👤 Élève</div><div class="pcv">Baptiste</div><div class="pcs">${lv.e} Niv.${li+1} – ${lv.name}</div></div>
-    <div class="pc"><div class="pclb">⭐ XP Total</div><div class="pcv">${S.xp}</div><div class="pcs">Prochain : ${lv.max} XP</div></div>
+    <div class="pc"><div class="pclb">👤 Élève</div><div class="pcv">Baptiste</div><div class="pcs">${poke.emoji} Niv.${lv} – ${poke.name}</div></div>
+    <div class="pc"><div class="pclb">⭐ XP Total</div><div class="pcv">${S.xp.toLocaleString('fr')}</div><div class="pcs">Niv. ${lv}/100</div></div>
     <div class="pc"><div class="pclb">🎯 Exercices</div><div class="pcv">${tD}</div><div class="pcs">${tO} bonnes rép.</div></div>
     <div class="pc"><div class="pclb">✅ Réussite</div><div class="pcv">${acc}%</div><div class="pcs">Taux global</div></div>
-    <div class="pc"><div class="pclb">⚡ Meilleur combo</div><div class="pcv">×${S.maxCombo||1}</div><div class="pcs">Série : ${S.streak}</div></div>
-    <div class="pc"><div class="pclb">🏆 Badges</div><div class="pcv">${S.badges.length}/${BADGES.length}</div><div class="pcs">Boss vaincus : ${S.bossWin||0}</div></div>
+    <div class="pc"><div class="pclb">⚡ Meilleur combo</div><div class="pcv">×${S.maxCombo||1}</div><div class="pcs">Série max : ${S.maxS}</div></div>
+    <div class="pc"><div class="pclb">🏆 Badges</div><div class="pcv">${S.badges.length}/${BADGES.length}</div><div class="pcs">Boss : ${S.bossWin||0}</div></div>
+  `;
+  // Pokémon collection
+  const collected=[];for(let i=1;i<=lv;i++)collected.push(getPokeForLevel(i));
+  const pokeSection=document.createElement('div');
+  pokeSection.className='rwrap';
+  pokeSection.innerHTML=`<div class="rtit2">🎮 Collection Pokémon (${lv}/100)</div>
+    <div style="display:flex;flex-wrap:wrap;gap:.35rem">${collected.map(p=>`<div title="${p.name} — ❤️${p.hp.toLocaleString('fr')} PV" style="background:${p.bg};border:2px solid ${p.color};border-radius:10px;padding:.25rem .4rem;font-size:var(--fxs);cursor:default;transition:transform .15s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">${p.emoji} <span style="font-weight:800;font-size:var(--fxs);color:${p.color}">${p.name}</span></div>`).join('')}</div>
+    ${lv<100?`<div style="font-size:var(--fxs);color:var(--mut);margin-top:.5rem">Prochain : ${getPokeForLevel(lv+1).emoji} <strong>${getPokeForLevel(lv+1).name}</strong> au niveau ${lv+1} (❤️ ${getPokeForLevel(lv+1).hp.toLocaleString('fr')} PV)</div>`:'<div style="font-size:var(--fsm);color:var(--gold);font-weight:800;margin-top:.5rem">🏆 Collection complète !</div>'}
   `;
   document.getElementById('radar').innerHTML=['fr','ma','en','cj'].map(sub=>{
     const done=S.done[sub]||0,ok=S.corr[sub]||0,pct=Math.min(100,Math.round(done/20*100)),ac=done>0?Math.round(ok/done*100):0;
-    return `<div class="rrow"><div class="rlbl" style="color:${SC[sub]}">${SN[sub]}</div><div class="rbar"><div class="rfill" style="width:${pct}%;background:${SC[sub]}"></div></div><div style="font-size:var(--fxs);font-weight:700;min-width:34px;text-align:right;color:${SC[sub]}">${done}</div></div><div style="font-size:var(--fxs);color:var(--mut);margin-bottom:.55rem;padding-left:75px">Réussite : ${ac}%</div>`;
+    return `<div class="rrow"><div class="rlbl" style="color:${SC[sub]}">${SN[sub]}</div><div class="rbar"><div class="rfill" style="width:${pct}%;background:${SC[sub]}"></div></div><div style="font-size:var(--fxs);font-weight:700;min-width:32px;text-align:right;color:${SC[sub]}">${done}</div></div><div style="font-size:var(--fxs);color:var(--mut);margin-bottom:.5rem;padding-left:78px">Réussite : ${ac}%</div>`;
   }).join('');
+  // Insert pokemon section after radar
+  document.getElementById('radar').parentNode.insertAdjacentElement('afterend',pokeSection);
   const cur=S.autoDiff||'easy';
-  document.getElementById('pardiff').innerHTML=`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.4rem">${['easy','medium','hard','expert'].map(d=>{const cfg=DIFF[d],act=cur===d;const col=d==='easy'?'ok':d==='medium'?'en2':d==='hard'?'fr2':'pu2';return`<div style="display:inline-flex;align-items:center;gap:.3rem;padding:.3rem .65rem;border-radius:20px;border:2px solid ${act?`var(--${col})`:'var(--brd)'};background:${act?`rgba(${d==='easy'?'34,197,94':d==='medium'?'251,191,36':d==='hard'?'248,113,113':'168,85,247'},.1)`:'transparent'};font-size:var(--fxs);font-weight:700;color:${act?`var(--${col})`:'var(--mut)'}">${cfg.lbl}${act?' ←':''}</div>`;}).join('')}</div>`;
-  document.getElementById('force-btns').innerHTML=['easy','medium','hard','expert'].map(d=>{const cfg=DIFF[d];return`<button onclick="forceDiff('${d}')" style="background:var(--s1);border:2px solid var(--brd);border-radius:10px;padding:.32rem .65rem;color:var(--mut);font-size:var(--fxs);font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--pu2)';this.style.color='var(--pu2)'" onmouseout="this.style.borderColor='var(--brd)';this.style.color='var(--mut)'">Forcer ${cfg.lbl}</button>`;}).join('');
+  document.getElementById('pardiff').innerHTML=`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.35rem">${['easy','medium','hard','expert'].map(d=>{const cfg=DIFF[d],act=cur===d;const col=d==='easy'?'ok':d==='medium'?'en2':d==='hard'?'fr2':'pu2';return`<div style="display:inline-flex;align-items:center;gap:.3rem;padding:.28rem .6rem;border-radius:20px;border:2px solid ${act?`var(--${col})`:'var(--brd)'};background:${act?`rgba(${d==='easy'?'34,197,94':d==='medium'?'251,191,36':d==='hard'?'248,113,113':'168,85,247'},.1)`:'transparent'};font-size:var(--fxs);font-weight:700;color:${act?`var(--${col})`:'var(--mut)'}">${cfg.lbl}${act?' ←':''}</div>`;}).join('')}</div>`;
+  document.getElementById('force-btns').innerHTML=['easy','medium','hard','expert'].map(d=>{const cfg=DIFF[d];return`<button onclick="forceDiff('${d}')" style="background:var(--s1);border:2px solid var(--brd);border-radius:10px;padding:.3rem .6rem;color:var(--mut);font-size:var(--fxs);font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--pu2)';this.style.color='var(--pu2)'" onmouseout="this.style.borderColor='var(--brd)';this.style.color='var(--mut)'">Forcer ${cfg.lbl}</button>`;}).join('');
   const hist=S.hist||[];
-  document.getElementById('hist').innerHTML=hist.length===0?'<div style="color:var(--mut);font-size:var(--fxs);text-align:center;padding:.8rem">Aucune session pour l\'instant</div>':hist.slice(0,12).map(h=>{const pct=Math.round(h.score/h.total*100),cls=pct>=80?'g':pct>=60?'m':'b',ico={fr:'📖',ma:'🔢',en:'🇬🇧',cj:'✍️',rv:'🔄',bo:'👹'}[h.sub]||'📚',dcl={easy:'🌱',medium:'⭐',hard:'🔥',expert:'💎'}[h.diff||'easy'],cb=h.combo>1?` ⚡×${h.combo}`:'';return`<div class="hit"><div class="hdt">${h.date}</div><div>${ico}</div><div style="flex:1">${SN[h.sub]||h.sub} ${dcl}${cb}</div><div class="hsc ${cls}">${h.score}/${h.total} +${h.xp}XP</div></div>`;}).join('');
-  document.getElementById('tips').innerHTML=genTips().map(t=>`<div class="tip"><span>${t.i}</span><span>${t.t}</span></div>`).join('');
+  document.getElementById('hist').innerHTML=hist.length===0?'<div style="color:var(--mut);font-size:var(--fxs);text-align:center;padding:.7rem">Aucune session pour l\'instant</div>':hist.slice(0,15).map(h=>{const pct=Math.round(h.score/h.total*100),cls=pct>=80?'g':pct>=60?'m':'b',ico={fr:'📖',ma:'🔢',en:'🇬🇧',cj:'✍️',rv:'🔄',bo:'👹'}[h.sub]||'📚',dcl={easy:'🌱',medium:'⭐',hard:'🔥',expert:'💎'}[h.diff||'easy'],cb=h.combo>1?` ⚡×${h.combo}`:'';return`<div class="hit"><div class="hdt">${h.date}</div><div>${ico}</div><div style="flex:1">${SN[h.sub]||h.sub} ${dcl}${cb}</div><div class="hsc ${cls}">${h.score}/${h.total} +${h.xp}XP</div></div>`;}).join('');
+  document.getElementById('tips').innerHTML=genTips(lv,acc).map(t=>`<div class="tip"><span>${t.i}</span><span>${t.t}</span></div>`).join('');
   show('s-par');
 }
 function forceDiff(d){S.autoDiff=d;S.rates=[];save();showPar();}
-function genTips(){
-  const tips=[],tD=Object.values(S.done).reduce((a,b)=>a+b,0),diff=getDiff();
-  const fA=S.done.fr>0?S.corr.fr/S.done.fr:null,mA=S.done.ma>0?S.corr.ma/S.done.ma:null,eA=S.done.en>0?S.corr.en/S.done.en:null,cA=S.done.cj>0?S.corr.cj/S.done.cj:null;
+function genTips(lv,acc){
+  const tips=[],tD=Object.values(S.done).reduce((a,b)=>a+b,0);
+  const fA=S.done.fr>0?S.corr.fr/S.done.fr:null,mA=S.done.ma>0?S.corr.ma/S.done.ma:null,cA=S.done.cj>0?S.corr.cj/S.done.cj:null;
   if(tD===0)tips.push({i:'🚀',t:'Encouragez Baptiste à commencer ! 5 à 10 min par jour suffisent.'});
-  if(S.maxCombo>=5)tips.push({i:'⚡',t:`Baptiste a réalisé un combo de ${S.maxCombo} bonnes réponses ! Les combos multiplient les XP gagnés.`});
-  if(S.maxS>=10)tips.push({i:'🌪️',t:`Incroyable ! Baptiste a enchaîné ${S.maxS} bonnes réponses d'affilée !`});
-  if((S.done.cj||0)<3)tips.push({i:'✍️',t:'Le mode Conjugaison est nouveau ! Il couvre le présent, le passé composé, l\'imparfait et le futur.'});
-  if(cA!==null&&cA<0.6)tips.push({i:'✍️',t:'La conjugaison mérite plus de pratique. Révisez les terminaisons ensemble 5 min le soir.'});
+  if(lv>=10)tips.push({i:'🎮',t:`Baptiste est niveau ${lv} et possède ${lv} Pokémon ! Il lui en reste ${100-lv} à débloquer.`});
+  if(!S.mis.lc)tips.push({i:'📗',t:'Baptiste n\'a pas encore fait de leçon de conjugaison. Le mode "Leçon Conj." explique les règles avant de pratiquer !'});
+  if(S.maxCombo>=5)tips.push({i:'⚡',t:`Baptiste a réalisé un combo de ${S.maxCombo} ! Les combos multiplient les XP gagnés.`});
   if(fA!==null&&fA<.6)tips.push({i:'📖',t:'Lisez ensemble 5 min chaque soir pour renforcer le Français.'});
   if(mA!==null&&mA<.6)tips.push({i:'🔢',t:'Révisez les tables de multiplication avec des petits défis du quotidien.'});
-  if(eA!==null&&eA<.6)tips.push({i:'🇬🇧',t:"Regardez de courts dessins animés en anglais pour habituer l'oreille."});
+  if(cA!==null&&cA<.6)tips.push({i:'✍️',t:'La conjugaison mérite plus de pratique. Commencez par la leçon pour bien comprendre les règles !'});
   if((S.bossWin||0)>=1)tips.push({i:'👹',t:`Baptiste a vaincu le Boss ! C'est le défi le plus difficile de l'app.`});
-  if(diff==='easy'&&S.tot>15&&(fA||0)>=.85&&(mA||0)>=.85)tips.push({i:'⬆️',t:'Baptiste maîtrise le niveau Facile. La difficulté va monter automatiquement !'});
   tips.push({i:'⏰',t:'10 minutes par jour valent mieux qu\'une longue session le week-end.'});
-  tips.push({i:'💪',t:'Valorisez l\'effort, pas seulement les résultats. Chaque erreur est une chance d\'apprendre !'});
+  tips.push({i:'💪',t:'Valorisez l\'effort ! Chaque erreur est une chance d\'apprendre et de débloquer un meilleur Pokémon !'});
   return tips.slice(0,5);
 }
 function resetAll(){
   if(!confirm('Remettre à zéro TOUTE la progression de Baptiste ? Cette action est irréversible.'))return;
   const pin=S.pin;
-  S={xp:0,coins:0,streak:0,maxS:0,tot:0,perf:0,hOk:0,eOk:0,bossWin:0,maxCombo:0,done:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0},corr:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0},badges:[],mis:{ex:0,s3:0,cj:0},hist:[],autoDiff:'easy',rates:[],pin,combo:0};
+  S={xp:0,coins:0,streak:0,maxS:0,tot:0,perf:0,hOk:0,eOk:0,bossWin:0,maxCombo:0,done:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0,lc:0},corr:{fr:0,ma:0,en:0,cj:0,rv:0,bo:0},badges:[],mis:{ex:0,s3:0,lc:0},hist:[],autoDiff:'easy',rates:[],pin,combo:0};
   save();showPar();
 }
 
@@ -834,8 +1162,6 @@ function tts(txt){if(!window.speechSynthesis)return;window.speechSynthesis.cance
 
 // ===== PARTICLES =====
 function ptcl(el){const r=el.getBoundingClientRect();['⭐','✨','🌟','💫','🎉','🎊','🏆'].sort(()=>Math.random()-.5).slice(0,7).forEach(em=>{const p=document.createElement('div');p.className='pt';p.textContent=em;p.style.cssText=`left:${r.left+r.width/2+(Math.random()-.5)*60}px;top:${r.top+r.height/2+(Math.random()-.5)*30}px;font-size:${Math.random()*.7+.7}rem;animation-delay:${Math.random()*.3}s`;document.body.appendChild(p);setTimeout(()=>p.remove(),1500);});}
-
-// ===== UTILS =====
 function shuf(a){return[...a].sort(()=>Math.random()-.5);}
 
 // ===== INIT =====
